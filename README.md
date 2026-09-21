@@ -10,6 +10,7 @@ modules/reinforce-or-reclaim.html  Moment 1 (from the Articulate source course)
 css/entegris.css                 Entegris design tokens and components
 js/course.js                     Option selection, reflection notes, progress, completion
 assets/entegris-logo.png         Logo
+assets/video/                    Course videos, posters, and captions (see its README)
 ```
 
 ## Replacing a video placeholder
@@ -26,13 +27,13 @@ Every placeholder is a `div.video` with a `data-video` id:
 | `m1-reflect` | Moment 1 | Reflection prompts |
 | `m1-wrapup` | Moment 1 | Wrap up |
 
-To swap one in, replace the inner content of that `div` (the corner labels and the play block) with a video element and drop the `role`/`aria-label` attributes:
+Store the files in `assets/video/`, named after the placeholder id (see `assets/video/README.md` for the full list and size limits). To swap one in, replace the inner content of that `div` (the corner labels and the play block) with a video element and drop the `role`/`aria-label` attributes:
 
 ```html
 <div class="video" data-video="m1-scenario">
-  <video controls preload="metadata" poster="../assets/m1-scenario.jpg">
-    <source src="../assets/m1-scenario.mp4" type="video/mp4">
-    <track kind="captions" src="../assets/m1-scenario.vtt" srclang="en" label="English">
+  <video controls preload="metadata" poster="../assets/video/m1-scenario.jpg">
+    <source src="../assets/video/m1-scenario.mp4" type="video/mp4">
+    <track kind="captions" src="../assets/video/m1-scenario.vtt" srclang="en" label="English">
   </video>
 </div>
 ```
