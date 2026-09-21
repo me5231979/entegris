@@ -16,6 +16,8 @@ js/scorm-api.js        SCORM 1.2 API wrapper (used by launch.html)
 js/content/en.js       English course content (source of truth)
 js/content/<code>.js   Translations: zh-Hans, zh-Hant, fr, de, he, ms, ja, ko
 scripts/build-scorm.sh Packages the course plus videos and documents into a SCORM zip
+scripts/build-single.py Bundles everything into docs/index.html, the published single file
+docs/index.html        Published single-file build (share or serve with GitHub Pages)
 assets/entegris-logo.png
 assets/video/          Course videos, posters, captions (see its README)
 assets/docs/           Downloadable Playbook (see its README)
@@ -46,6 +48,16 @@ Every `video` block renders a placeholder panel labelled with its id. Ids: `l1-g
 ## Imagery
 
 The hero, lesson cards, and video panels draw a generative network-wave on a canvas (`js/mesh.js`) so the faded-blend look works without assets. To use real Entegris photography, add an `<img>` inside `.hero` behind `.fade` and drop the canvas.
+
+## Published single-file build
+
+`docs/index.html` is the whole course in one self-contained HTML file: styles, scripts, all nine languages, and the logo inlined. It is the copy to share or host. Rebuild it after any change:
+
+```
+python3 scripts/build-single.py
+```
+
+To publish it with GitHub Pages: repository Settings, Pages, Source "Deploy from a branch", pick this branch and the `/docs` folder. GitHub then serves it at `https://<owner>.github.io/entegris/`. The file also opens directly from disk and can be emailed or dropped on any web server.
 
 ## SCORM 1.2 packaging
 
