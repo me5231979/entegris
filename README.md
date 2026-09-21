@@ -14,7 +14,7 @@ assets/entegris-logo.png         Logo
 
 ## Replacing a video placeholder
 
-Every placeholder is a `div.video-placeholder` with a `data-video` id:
+Every placeholder is a `div.video` with a `data-video` id:
 
 | id | Page | Placement |
 | --- | --- | --- |
@@ -26,10 +26,10 @@ Every placeholder is a `div.video-placeholder` with a `data-video` id:
 | `m1-reflect` | Moment 1 | Reflection prompts |
 | `m1-wrapup` | Moment 1 | Wrap up |
 
-To swap one in, replace the inner content of that `div` with a video element and drop the `role`/`aria-label` attributes:
+To swap one in, replace the inner content of that `div` (the corner labels and the play block) with a video element and drop the `role`/`aria-label` attributes:
 
 ```html
-<div class="video-placeholder" data-video="m1-scenario">
+<div class="video" data-video="m1-scenario">
   <video controls preload="metadata" poster="../assets/m1-scenario.jpg">
     <source src="../assets/m1-scenario.mp4" type="video/mp4">
     <track kind="captions" src="../assets/m1-scenario.vtt" srclang="en" label="English">
@@ -48,7 +48,7 @@ The container keeps the 16:9 frame. Include captions for accessibility.
 
 ## Brand
 
-Tokens follow the Entegris brand standards: neutral grey base, one red accent used sparingly, square corners, Inter type, 8px spacing, visible focus rings, reduced-motion support. Red (`#BD2227`) and wordmark grey (`#6F635A`) are sampled from the logo file.
+Tokens follow the Entegris brand standards: neutral base with a warm bias toward the wordmark grey, one red accent used sparingly, square corners, Archivo display with Inter body and IBM Plex Mono for step counters and meta, visible focus rings, reduced-motion support. Red (`#BD2227`) and wordmark grey (`#6F635A`) are sampled from the logo file.
 
 ## Progress and completion
 

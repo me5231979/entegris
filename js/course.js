@@ -72,7 +72,7 @@
     });
     var pct = Math.round((reached / steps.length) * 100);
     bar.style.width = pct + '%';
-    if (label) { label.textContent = 'Step ' + Math.max(reached, 1) + ' of ' + steps.length; }
+    if (label) { label.textContent = 'Step ' + String(Math.max(reached, 1)).padStart(2, '0') + ' / ' + String(steps.length).padStart(2, '0'); }
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress);
@@ -85,7 +85,7 @@
     state.complete = true;
     save(state);
     if (completeStatus) { completeStatus.removeAttribute('hidden'); }
-    if (completeBtn) { completeBtn.setAttribute('aria-disabled', 'true'); completeBtn.textContent = 'Completed'; }
+    if (completeBtn) { completeBtn.setAttribute('aria-disabled', 'true'); completeBtn.textContent = 'Moment 1 complete'; }
   }
   if (completeBtn) {
     completeBtn.addEventListener('click', function () {
@@ -102,8 +102,8 @@
     try {
       var s = JSON.parse(localStorage.getItem(id) || '{}');
       if (s.complete) {
-        var m = a.querySelector('.meta');
-        if (m) { m.textContent = 'Completed'; m.style.color = 'var(--color-success)'; }
+        var m = a.querySelector('.chip');
+        if (m) { m.textContent = 'Complete'; m.className = 'chip chip--done'; }
       }
     } catch (e) { /* ignore */ }
   });
