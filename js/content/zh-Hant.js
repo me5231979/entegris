@@ -12,7 +12,7 @@ window.ENTG_CONTENT['zh-Hant'] = {
     continueBtn: '繼續', completeCourse: '完成課程', courseCompleted: '課程已完成',
     prev: '上一頁', next: '下一頁', home: '課程首頁',
     videoPlaceholder: '影片預留位置', captions: '16:9 · 需要字幕',
-    download: '下載', flip: '翻面', select: '選擇 {x}', selected: '已選擇',
+    download: '下載', flip: '翻轉卡片', select: '選擇 {x}', selected: '已選擇',
     yourChoice: '您的選擇', chooseResponse: '選擇回應方式', pickClosest: '選擇最接近您實際做法的選項。',
     reflect: '反思', notesLocal: '您的筆記會與課程進度一併儲存。',
     footerCopy: '© 1994-2026 Entegris。保留所有權利。', footerInternal: '內部教育訓練教材',
@@ -52,7 +52,7 @@ window.ENTG_CONTENT['zh-Hant'] = {
         { type: 'accordion', items: [
           { title: 'GLP 的目的', html: '<p>卓越領導者畫像的建立，旨在定義 Entegris 卓越領導力的樣貌，並為所有領導者設定明確的期望。它是一份實用指南，協助領導者將行動與公司策略對齊，同時保留真誠、獨特的個人領導風格。</p><p>透過提供這樣的清晰度，GLP 讓領導者能夠做出一致的決策，並在整個組織中培養正向、高績效的文化。</p>' },
           { title: 'GLP 的演進', html: '<p>自 2018 年推出以來，GLP 與 Entegris 一同演進。隨著組織成長並面對新的挑戰，我們體認到需要重新檢視並更新這份畫像，以反映當前的現實。</p><p>更新後的 GLP 納入了新的期望與行為，確保它在變革與成長時期仍是一份切合需求且有效的領導指南。</p>' },
-          { title: 'GLP 特質', html: '<p>GLP 列出了定義 Entegris 卓越領導力的七項核心特質：</p><ul><li>為未來培育人才</li><li>推動全球組織的夥伴合作</li><li>促進創新</li><li>以堅韌與謙遜領導</li><li>快速做出資料導向的決策</li><li>推動以客戶為中心</li><li>推動當責</li></ul>' },
+          { title: 'GLP 特質', html: '<p>GLP 列出了定義 Entegris 卓越領導力的七項核心特質：</p><ul><li>為未來培育人才</li><li>推動全球組織的夥伴合作</li><li>促進創新</li><li>推動當責</li><li>以堅韌與謙遜領導</li><li>推動以客戶為中心</li><li>快速做出資料導向的決策</li></ul>' },
           { title: 'GLP 適用於所有領導者', html: '<p>在 Entegris，領導力並不限於人員主管。無論職稱或角色為何，GLP 適用於每一個人。重點在於您在日常工作中如何展現自己、如何協作、如何承擔責任。</p><p>透過擁抱 GLP，每一位團隊成員都能為我們的領導文化做出貢獻，並在整個組織中發揮正向影響。</p>' }
         ] },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },

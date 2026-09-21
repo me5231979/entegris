@@ -12,7 +12,7 @@ window.ENTG_CONTENT.ko = {
     continueBtn: '계속', completeCourse: '과정 완료', courseCompleted: '과정을 완료했습니다',
     prev: '이전', next: '다음', home: '과정 홈',
     videoPlaceholder: '동영상 자리 표시자', captions: '16:9 · 자막 필수',
-    download: '다운로드', flip: '뒤집기', select: '{x} 선택', selected: '선택됨',
+    download: '다운로드', flip: '카드 뒤집기', select: '{x} 선택', selected: '선택됨',
     yourChoice: '내 선택', chooseResponse: '대응 방식을 선택하세요', pickClosest: '실제로 할 법한 행동과 가장 가까운 선택지를 고르세요.',
     reflect: '성찰', notesLocal: '메모는 과정 진행 상황과 함께 저장됩니다.',
     footerCopy: '© 1994-2026 Entegris. All Rights Reserved.', footerInternal: '사내 교육 자료',
@@ -52,7 +52,7 @@ window.ENTG_CONTENT.ko = {
         { type: 'accordion', items: [
           { title: 'GLP의 목적', html: '<p>그레이트 리더 프로필은 Entegris에서 위대한 리더십이 어떤 모습인지 정의하고 모든 리더에게 명확한 기대치를 제시하기 위해 만들어졌습니다. GLP는 리더가 회사의 전략에 맞게 행동하면서도 진정성 있는 개인의 리더십 스타일을 발휘할 수 있도록 돕는 실용적인 지침입니다.</p><p>이러한 명확성을 바탕으로 GLP는 리더가 일관된 결정을 내리고 조직 전반에 긍정적이고 높은 성과를 내는 문화를 조성하도록 힘을 실어 줍니다.</p>' },
           { title: 'GLP의 발전 과정', html: '<p>2018년 도입 이후 GLP는 Entegris와 함께 발전해 왔습니다. 조직이 성장하고 새로운 도전에 직면하면서, 우리는 현재 상황을 반영하도록 프로필을 재검토하고 새롭게 정비할 필요성을 인식했습니다.</p><p>업데이트된 GLP는 새로운 기대치와 행동을 반영하여, 변화와 성장의 시기에도 리더십 지침으로서 계속 유효하고 효과적일 수 있도록 했습니다.</p>' },
-          { title: 'GLP 특성', html: '<p>GLP는 Entegris에서 위대한 리더십을 정의하는 다음 일곱 가지 핵심 특성을 제시합니다.</p><ul><li>미래를 위한 인재 육성</li><li>글로벌 조직 전반의 파트너십 추진</li><li>혁신 촉진</li><li>끈기와 겸손으로 이끌기</li><li>신속한 데이터 기반 의사결정</li><li>고객 중심 실천</li><li>책임감 고취</li></ul>' },
+          { title: 'GLP 특성', html: '<p>GLP는 Entegris에서 위대한 리더십을 정의하는 다음 일곱 가지 핵심 특성을 제시합니다.</p><ul><li>미래를 위한 인재 육성</li><li>글로벌 조직 전반의 파트너십 추진</li><li>혁신 촉진</li><li>책임감 고취</li><li>끈기와 겸손으로 이끌기</li><li>고객 중심 실천</li><li>신속한 데이터 기반 의사결정</li></ul>' },
           { title: '모든 리더를 위한 GLP', html: '<p>Entegris의 리더십은 피플 매니저에게만 국한되지 않습니다. GLP는 직급이나 역할에 관계없이 모든 구성원에게 적용됩니다. GLP는 여러분이 일상 업무에서 어떤 태도로 임하고, 협업하며, 주인의식을 갖는지에 관한 것입니다.</p><p>GLP를 받아들임으로써 모든 팀원이 우리의 리더십 문화에 기여하고 조직 전반에 긍정적인 영향을 미칠 수 있습니다.</p>' }
         ] },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
