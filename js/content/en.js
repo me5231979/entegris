@@ -12,11 +12,11 @@ window.ENTG_CONTENT.en = {
     continueBtn: 'Continue', completeCourse: 'Complete course', courseCompleted: 'Course completed',
     prev: 'Previous', next: 'Next', home: 'Course home',
     videoPlaceholder: 'Video placeholder', captions: '16:9 · captions required',
-    download: 'Download', flip: 'Flip', select: 'Select {x}', selected: 'Selected',
+    download: 'Download', flip: 'Flip card', select: 'Select {x}', selected: 'Selected',
     yourChoice: 'Your choice', chooseResponse: 'Choose a response', pickClosest: 'Pick the option closest to what you would do.',
     reflect: 'Reflect', notesLocal: 'Your notes are saved with your course progress.',
     footerCopy: '© 1994-2026 Entegris. All Rights Reserved.', footerInternal: 'Internal training material',
-    thatsAWrap: 'You have completed every lesson.', backToOutline: 'Back to the outline',
+    thatsAWrap: 'You have completed every lesson.', backToOutline: 'Back to course outline',
     objectives: 'Objectives', expand: 'Expand', printNotes: 'Print my notes', printTitle: 'My notes and go-do actions', noAnswer: '(no answer yet)', myChoice: 'My choice', translationNote: ''
   },
   home: {
@@ -27,7 +27,7 @@ window.ENTG_CONTENT.en = {
     facts: [
       { k: 'Lessons', v: '5' },
       { k: 'Format', v: 'Video · scenarios · reflection' },
-      { k: 'Time', v: '≈ 60 min' },
+      { k: 'Time', v: '≈ 60 minutes' },
       { k: 'Bring', v: 'GLP Playbook' }
     ]
   },
@@ -52,7 +52,7 @@ window.ENTG_CONTENT.en = {
         { type: 'accordion', items: [
           { title: 'Purpose of the GLP', html: '<p>The Great Leader Profile was created to define what great leadership looks like at Entegris and to set clear expectations for all leaders. It serves as a practical guide, helping leaders align their actions with our company’s strategy while allowing for authentic, individual leadership styles.</p><p>By providing this clarity, the GLP empowers leaders to make consistent decisions and foster a positive, high-performing culture across the organization.</p>' },
           { title: 'Evolution of the GLP', html: '<p>Since its introduction in 2018, the GLP has evolved alongside Entegris. As our organization grew and faced new challenges, we recognized the need to revisit and refresh the profile to reflect our current reality.</p><p>The updated GLP now incorporates new expectations and behaviors, ensuring it remains relevant and effective as a leadership guide during times of change and growth.</p>' },
-          { title: 'GLP Characteristics', html: '<p>The GLP outlines seven core characteristics that define great leadership at Entegris:</p><ul><li>Builds Talent for the Future</li><li>Drives Partnership Across Our Global Organization</li><li>Fosters Innovation</li><li>Leads with Tenacity &amp; Humility</li><li>Makes Data-Driven Decisions with Speed</li><li>Drives Customer Centricity</li><li>Drives Accountability</li></ul>' },
+          { title: 'GLP Characteristics', html: '<p>The GLP outlines seven core characteristics that define great leadership at Entegris:</p><ul><li>Builds Talent for the Future</li><li>Drives Partnerships Across Our Global Organization</li><li>Fosters Innovation</li><li>Drives Accountability</li><li>Leads with Tenacity and Humility</li><li>Drives Customer Centricity</li><li>Makes Data-Driven Decisions with Speed</li></ul>' },
           { title: 'GLP for All Leaders', html: '<p>Leadership at Entegris isn’t limited to people managers. The GLP applies to everyone, regardless of title or role. It’s about how you show up, collaborate, and take ownership in your daily work.</p><p>By embracing the GLP, every team member can contribute to our culture of leadership and drive positive impact across the organization.</p>' }
         ] },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
@@ -61,7 +61,7 @@ window.ENTG_CONTENT.en = {
         { type: 'video', id: 'l1-characteristics', title: 'GLP Characteristics' },
         { type: 'characteristics', center: 'PACE', sub: 'A values-driven culture', items: [
           { icon: 'talent', name: 'Builds Talent for the Future', desc: 'Actively develops self and others, preparing the team for future challenges and opportunities.' },
-          { icon: 'globe', name: 'Drives Partnership Across Our Global Organization', desc: 'Collaborates effectively across teams and regions to achieve shared goals and strengthen our global impact.' },
+          { icon: 'globe', name: 'Drives Partnerships Across Our Global Organization', desc: 'Collaborates effectively across teams and regions to achieve shared goals and strengthen our global impact.' },
           { icon: 'bulb', name: 'Fosters Innovation', desc: 'Encourages creative thinking and new ideas, supporting continuous improvement and adaptability.' },
           { icon: 'shield', name: 'Drives Accountability', desc: 'Sets clear expectations, supports follow-through, and ensures individuals and teams own their commitments.' },
           { icon: 'flag', name: 'Leads with Tenacity and Humility', desc: 'Demonstrates resilience and determination while remaining open to feedback and learning from others.' },
@@ -79,8 +79,8 @@ window.ENTG_CONTENT.en = {
       title: 'Leadership Moment: Collaboration Under Pressure',
       short: 'Collaboration Under Pressure',
       blocks: [
-        { type: 'text', html: 'Pressure reveals leadership. When timelines tighten or tensions rise, your response shapes trust, alignment, and results. In this Leadership Moment, you’ll explore how strong leaders collaborate under pressure, maintain clarity, reinforce shared ownership, and prevent silos from forming.' },
-        { type: 'text', html: 'As you move through this module, reflect on how you show up when it matters most.' },
+        { type: 'text', html: 'Pressure reveals leadership. When timelines tighten or tensions rise, your response shapes trust, alignment, and results. In this leadership moment, you’ll explore how strong leaders collaborate under pressure, maintain clarity, reinforce shared ownership, and prevent silos from forming.' },
+        { type: 'text', html: 'As you move through this lesson, reflect on how you show up when it matters most.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Leadership Growth Starts with Collaboration Under Pressure' },
         { type: 'text', html: 'Collaboration is truly tested when pressure rises. In high-stakes situations, leaders must balance urgency with alignment, bringing people together instead of allowing silos or blame to take hold. How you respond in these moments shapes trust, performance, and culture.' },
@@ -102,7 +102,7 @@ window.ENTG_CONTENT.en = {
       short: 'Letting Go at the Right Level',
       blocks: [
         { type: 'text', html: 'Delegation isn’t just about assigning work; it’s about transferring the right level of authority. In this leadership moment, you’ll examine the tension between staying involved and truly stepping back. Effective leaders let go with intention. They create space for others to lead, make decisions, and build credibility even when the stakes are high. Letting go at the right level strengthens trust, develops capability, and reinforces ownership.' },
-        { type: 'text', html: 'As you move through this section, consider: Are you delegating tasks or empowering leadership?' },
+        { type: 'text', html: 'As you move through this lesson, consider: Are you delegating tasks or empowering leadership?' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Leadership Growth Continues with Letting Go at the Right Level' },
         { type: 'text', html: 'Now, watch the video and pay close attention to how authority is either reinforced or reclaimed in the moment. As you watch, engage with your GLP Playbook and reflect on how you delegate. Are you transferring true ownership, or staying closer than necessary?' },
@@ -133,13 +133,13 @@ window.ENTG_CONTENT.en = {
         { type: 'text', html: 'The leader considers several approaches: taking over the presentation to ensure clarity, offering only a brief message of reassurance, or coaching the team to refine their delivery while allowing them to maintain ownership of their work. Ultimately, the leader opts to engage the team in meaningful discussions, to understand their perspectives, and to provide constructive feedback without taking control of the process.' },
         { type: 'text', html: 'This approach highlights the importance of leadership that empowers teams. By offering guidance and fostering confidence, leaders can ensure their teams remain accountable, motivated, and prepared to succeed in high-stakes situations.' },
         { type: 'scenario', id: 'l4', prompt: 'Jessica’s team wants your input before the stakeholder presentation. What do you do?', options: [
-          { key: 'a', title: 'Step back in', text: 'The meeting matters. You review the presentation, make adjustments, and lead the stakeholder session yourself.', tag: 'Reclaims ownership', good: false, feedback: 'Taking over sends a clear message: when it counts, this is not your work. Jessica led for months, and the team loses the visible moment they earned. Confidence and credibility take the hit.' },
+          { key: 'a', title: 'Step back in', text: 'The meeting matters. You review the presentation, make adjustments, and lead the stakeholder session yourself.', tag: 'Reclaims ownership', good: false, feedback: 'Taking over sends a clear message: when it counts, this is not their work. Jessica led for months, and the team loses the visible moment they earned. Confidence and credibility take the hit.' },
           { key: 'b', title: 'Send an email', text: 'You tell the team you understand their concerns, you trust them, and they should present what they believe is right.', tag: 'Leaves the team alone', good: false, feedback: 'A vague message offers no guidance or coaching to a team that asked for support. They are still unsure what stakeholders expect, and their anxiety rises before a high-visibility moment.' },
           { key: 'c', title: 'Meet and listen first', text: 'You schedule time with the team. Before giving input, you ask them to walk you through their positioning and approach.', tag: 'Reinforces ownership', good: true, feedback: 'You show up, you coach, and you resist the urge to take control when pressure rises. Jessica keeps clear ownership and real decision-making authority. The team feels empowered to move on.' }
         ] },
         { type: 'reflect', id: 'l4', title: 'Am I truly empowering my team?', intro: 'Empowerment is not something we declare. It is something our teams experience. Take a few minutes with these questions.', questions: [
-          { q: 'How would work continue if I were unavailable?', hint: 'If progress slows, decisions stall, or stakeholders wait for you, that is a signal.' },
-          { q: 'How might my behavior in high-profile moments reinforce or weaken empowerment?', hint: 'Do you step in when the stakes rise? Answer questions directed to your team? Or stay behind them and let them lead?' },
+          { q: 'How would work continue if I were unavailable?', hint: 'If progress slows, decisions stall, or stakeholders wait for me, that is a signal.' },
+          { q: 'How might my behavior in high-profile moments reinforce or weaken empowerment?', hint: 'Do I step in when the stakes rise? Answer questions directed to my team? Or stay behind them and let them lead?' },
           { q: 'How could my team operate more independently six months from now if I empower them more today?', hint: 'Are they proposing solutions instead of escalating problems? Owning stakeholder conversations? Growing in judgment?' }
         ] },
         { type: 'quote', text: 'Reclaim your focus and reinforce your priorities; success begins with clarity and determination.' }

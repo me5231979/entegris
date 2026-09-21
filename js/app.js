@@ -298,7 +298,7 @@
           b.options.forEach(function (o) { if (o.key === key) { opt = o; } });
           parts.push(el('div', { class: 'label', text: C.ui.myChoice }));
           parts.push(el('h3', { text: b.prompt }));
-          parts.push(opt ? el('p', { class: 'answer', text: opt.key.toUpperCase() + ' · ' + opt.title + ' — ' + opt.feedback }) : el('p', { class: 'answer empty', text: C.ui.noAnswer }));
+          parts.push(opt ? el('p', { class: 'answer', text: opt.key.toUpperCase() + ' · ' + opt.title + ': ' + opt.feedback }) : el('p', { class: 'answer empty', text: C.ui.noAnswer }));
         }
         if (b.type === 'reflect') {
           parts.push(el('div', { class: 'label', text: C.ui.reflect }));
@@ -329,7 +329,7 @@
       case 'video': return blockVideo(b, C);
       case 'objectives': return el('div', { class: 'block' }, [el('ol', { class: 'objectives', 'aria-label': C.ui.objectives }, b.items.map(function (t) { return el('li', null, [el('span', { text: t })]); }))]);
       case 'accordion': return el('div', { class: 'block accordion' }, b.items.map(function (it) { return el('details', null, [el('summary', { text: it.title }), el('div', { class: 'acc-body', html: it.html })]); }));
-      case 'download': return el('div', { class: 'block' }, [el('a', { class: 'download', href: b.href, download: '' }, [el('span', { class: 'ico', text: 'PPTX' }), el('span', null, [el('span', { class: 'name', text: b.name }), el('span', { class: 'meta', text: b.meta })]), svg('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>'), el('span', { class: 'sr-only', text: C.ui.download })])]);
+      case 'download': return el('div', { class: 'block' }, [el('a', { class: 'download', href: b.href, download: '' }, [el('span', { class: 'ico', text: 'PPTX', 'aria-hidden': 'true' }), el('span', null, [el('span', { class: 'name', text: b.name }), el('span', { class: 'meta', text: b.meta })]), svg('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>'), el('span', { class: 'sr-only', text: C.ui.download })])]);
       case 'characteristics': return blockCharacteristics(b);
       case 'flashcards': return blockFlashcards(b, lesson, C);
       case 'scenario': return blockScenario(b, lesson, C);
@@ -358,10 +358,11 @@
 
     var isLast = idx === L.length - 1;
     var nav = el('div', { class: 'lesson-nav-btns' });
-    var btn = el('button', { class: 'btn btn--red btn--block', type: 'button', text: isLast ? (s.complete ? C.ui.courseCompleted : C.ui.completeCourse) : C.ui.continueBtn });
-    if (isLast && s.complete) { btn.setAttribute('aria-disabled', 'true'); }
+    var btn = (isLast && s.complete)
+      ? el('a', { class: 'btn btn--red btn--block', href: '#/', text: C.ui.backToOutline })
+      : el('button', { class: 'btn btn--red btn--block', type: 'button', text: isLast ? C.ui.completeCourse : C.ui.continueBtn });
     btn.addEventListener('click', function () {
-      if (btn.getAttribute('aria-disabled') === 'true') { return; }
+      if (btn.tagName === 'A') { return; }
       s.complete = true; persist();
       if (scorm && pctComplete() === 100) { scorm.markComplete(); }
       if (isLast) { location.hash = '#/'; } else { location.hash = '#/lesson/' + (idx + 2); }
