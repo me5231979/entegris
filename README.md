@@ -21,7 +21,7 @@ Entegris-Great-Leader-Profile.html  Published single-file build: download and op
 docs/index.html        Same file, in the folder GitHub Pages serves
 assets/entegris-logo.png
 assets/video/          Course videos, posters, captions (see its README)
-assets/docs/           Downloadable Playbook (see its README)
+assets/docs/           Downloadable Playbook PPTX (copied into docs/assets/docs by the bundler)
 ```
 
 ## Course content

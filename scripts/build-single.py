@@ -18,3 +18,11 @@ os.makedirs('docs', exist_ok=True)
 for out in ('Entegris-Great-Leader-Profile.html', 'docs/index.html'):
     open(out, 'w', encoding='utf-8').write(html)
     print(out, round(os.path.getsize(out) / 1024), 'KB')
+# Downloadable documents ride alongside the published copy so the download cards resolve.
+import shutil
+if os.path.isdir('assets/docs'):
+    os.makedirs('docs/assets/docs', exist_ok=True)
+    for f in os.listdir('assets/docs'):
+        if not f.lower().endswith('.md'):
+            shutil.copy2(os.path.join('assets/docs', f), os.path.join('docs/assets/docs', f))
+            print('copied', f)
