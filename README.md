@@ -58,7 +58,9 @@ The hero, lesson cards, and video panels draw a generative network-wave on a can
 python3 scripts/build-single.py
 ```
 
-To publish it with GitHub Pages: repository Settings, Pages, Source "Deploy from a branch", pick this branch and the `/docs` folder. GitHub then serves it at `https://<owner>.github.io/entegris/`. The file also opens directly from disk and can be emailed or dropped on any web server.
+**Live link:** https://me5231979.github.io/entegris/
+
+GitHub Pages serves the `gh-pages` branch. The workflow in `.github/workflows/pages.yml` copies `docs/` onto that branch whenever it changes on this branch, so after editing the course run the bundler, commit, and push; the live link updates in about a minute. The file also opens directly from disk and can be emailed or dropped on any web server.
 
 ## SCORM 1.2 packaging
 

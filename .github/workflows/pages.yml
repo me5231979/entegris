@@ -1,5 +1,8 @@
 name: Publish course to GitHub Pages
 
+# GitHub Pages serves the gh-pages branch. This workflow copies the built single-file
+# course from docs/ onto that branch whenever it changes, so the live link stays current.
+
 on:
   push:
     branches: [claude/admiring-carson-vs73vs, main]
@@ -7,28 +10,21 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Configure Pages (creates the site if it does not exist yet)
-        uses: actions/configure-pages@v5
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+          enable_jekyll: false
+          commit_message: "Publish course to GitHub Pages"
