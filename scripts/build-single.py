@@ -15,6 +15,6 @@ def inline_script(m):
     return '<script>\n' + read(src).replace('</script', '<\\/script') + '\n</script>'
 html = re.sub(r'<script src="([^"]+)"></script>', inline_script, html)
 os.makedirs('docs', exist_ok=True)
-out = 'docs/index.html'
-open(out, 'w', encoding='utf-8').write(html)
-print(out, round(os.path.getsize(out) / 1024), 'KB')
+for out in ('Entegris-Great-Leader-Profile.html', 'docs/index.html'):
+    open(out, 'w', encoding='utf-8').write(html)
+    print(out, round(os.path.getsize(out) / 1024), 'KB')

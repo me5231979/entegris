@@ -17,7 +17,8 @@ js/content/en.js       English course content (source of truth)
 js/content/<code>.js   Translations: zh-Hans, zh-Hant, fr, de, he, ms, ja, ko
 scripts/build-scorm.sh Packages the course plus videos and documents into a SCORM zip
 scripts/build-single.py Bundles everything into docs/index.html, the published single file
-docs/index.html        Published single-file build (share or serve with GitHub Pages)
+Entegris-Great-Leader-Profile.html  Published single-file build: download and open, or share
+docs/index.html        Same file, in the folder GitHub Pages serves
 assets/entegris-logo.png
 assets/video/          Course videos, posters, captions (see its README)
 assets/docs/           Downloadable Playbook (see its README)
@@ -51,7 +52,7 @@ The hero, lesson cards, and video panels draw a generative network-wave on a can
 
 ## Published single-file build
 
-`docs/index.html` is the whole course in one self-contained HTML file: styles, scripts, all nine languages, and the logo inlined. It is the copy to share or host. Rebuild it after any change:
+`Entegris-Great-Leader-Profile.html` (repo root) is the whole course in one self-contained HTML file. `docs/index.html` is the identical copy GitHub Pages serves.: styles, scripts, all nine languages, and the logo inlined. It is the copy to share or host. Rebuild it after any change:
 
 ```
 python3 scripts/build-single.py
