@@ -23,10 +23,20 @@
     <resource identifier="res-course" type="webcontent" adlcp:scormtype="sco" href="launch.html">
       <file href="launch.html"/>
       <file href="index.html"/>
-      <file href="modules/reinforce-or-reclaim.html"/>
       <file href="css/entegris.css"/>
-      <file href="js/course.js"/>
+      <file href="js/app.js"/>
+      <file href="js/i18n.js"/>
+      <file href="js/mesh.js"/>
       <file href="js/scorm-api.js"/>
+      <file href="js/content/en.js"/>
+      <file href="js/content/zh-Hans.js"/>
+      <file href="js/content/zh-Hant.js"/>
+      <file href="js/content/fr.js"/>
+      <file href="js/content/de.js"/>
+      <file href="js/content/he.js"/>
+      <file href="js/content/ms.js"/>
+      <file href="js/content/ja.js"/>
+      <file href="js/content/ko.js"/>
       <file href="assets/entegris-logo.png"/>
       <!-- Video, poster, and caption files are added to this list by scripts/build-scorm.sh at package time. -->
     </resource>

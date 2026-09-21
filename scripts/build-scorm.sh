@@ -10,10 +10,11 @@ VIDEO_SRC="${1:-}"
 DIST="dist/scorm"
 OUT="dist/the-great-leader-profile-daily-leadership-at-entegris-scorm12.zip"
 
-rm -rf "$DIST" && mkdir -p "$DIST/assets/video" dist
+rm -rf "$DIST" && mkdir -p "$DIST/assets/video" "$DIST/assets/docs" dist
 cp launch.html index.html imsmanifest.xml "$DIST/"
-cp -r css js modules "$DIST/"
+cp -r css js "$DIST/"
 cp assets/entegris-logo.png "$DIST/assets/"
+[ -d assets/docs ] && cp assets/docs/* "$DIST/assets/docs/" 2>/dev/null || true
 if [ -n "$VIDEO_SRC" ]; then
   find "$VIDEO_SRC" -maxdepth 1 -type f \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -exec cp {} "$DIST/assets/video/" \;
 else
@@ -21,7 +22,7 @@ else
 fi
 
 # Add every media file to the manifest's resource list.
-MEDIA=$(cd "$DIST" && find assets/video -type f | sort | sed 's|.*|      <file href="&"/>|')
+MEDIA=$(cd "$DIST" && find assets/video assets/docs -type f | sort | sed 's|.*|      <file href="&"/>|')
 if [ -n "$MEDIA" ]; then
   python3 - "$DIST/imsmanifest.xml" "$MEDIA" <<'PY'
 import sys

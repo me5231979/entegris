@@ -1,113 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Great Leader Profile</title>
-  <meta name="description" content="Daily Leadership at Entegris. Short leadership moments that show how Entegris leaders respond when it matters most.">
+  <meta name="description" content="The Great Leader Profile: Daily Leadership at Entegris. Five lessons on applying the refreshed GLP in everyday leadership moments.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/entegris.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" id="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="index.html" aria-label="Entegris home"><img src="assets/entegris-logo.png" alt="Entegris"></a>
-      <div class="header-meta">
-        <span class="mono">Leadership development</span>
-        <a href="index.html">The Great Leader Profile</a>
+      <a class="logo" href="#/" aria-label="Entegris"><img src="assets/entegris-logo.png" alt="Entegris"></a>
+      <div class="header-tools">
+        <label class="lang">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          <span class="sr-only" id="lang-label">Language</span>
+          <select data-lang-select id="lang-select"></select>
+        </label>
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="sidebar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span id="menu-label">Course menu</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <svg class="rings" viewBox="0 0 1280 640" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-        <ellipse class="r1" cx="1010" cy="300" rx="300" ry="150" transform="rotate(-22 1010 300)"/>
-        <ellipse class="r2" cx="1090" cy="360" rx="300" ry="150" transform="rotate(-22 1090 360)"/>
-      </svg>
-      <div class="wrap">
-        <div>
-          <span class="mono rise">The Great Leader Profile · Daily Leadership at Entegris</span>
-          <h1 id="hero-title" class="rise-2">Leadership shows up in <em>small moments.</em></h1>
-          <p class="lede rise-3">Real situations from a day at Entegris. You choose a response, see what it tells your team, and check it against the Great Leader Playbook.</p>
-          <div class="hero-actions rise-3">
-            <a class="btn btn--primary" href="modules/reinforce-or-reclaim.html">Start Moment 1 <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="#outline">See the outline</a>
-          </div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-head">
+          <svg class="watermark" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><ellipse cx="320" cy="150" rx="150" ry="80" transform="rotate(-24 320 150)"/><ellipse cx="380" cy="190" rx="150" ry="80" transform="rotate(-24 380 190)"/></svg>
+          <button class="close-btn" id="sb-close" type="button" aria-label="Close menu">×</button>
+          <span class="title" id="sb-title">The Great Leader Profile</span>
+          <span class="subtitle" id="sb-subtitle">Daily Leadership at Entegris</span>
+          <span class="pct cond" id="sb-pct">0% complete</span>
+          <div class="progress-bar" aria-hidden="true"><span id="sb-bar"></span></div>
         </div>
-        <table class="spec rise-3" aria-label="Course details">
-          <tbody>
-            <tr><td>Format</td><td>Video · choice · reflection</td></tr>
-            <tr><td>Time per moment</td><td>≈ 15 min</td></tr>
-            <tr><td>Moments</td><td>1 live · 2 planned</td></tr>
-            <tr><td>Bring</td><td>Great Leader Playbook</td></tr>
-          </tbody>
-        </table>
+        <nav aria-label="Lessons">
+          <ol class="lesson-nav" id="lesson-nav"></ol>
+        </nav>
+        <a class="sidebar-home cond" id="sb-home" href="#/">Course home</a>
       </div>
-    </section>
+    </aside>
 
-    <section class="band" aria-labelledby="how-title">
-      <div class="wrap">
-        <span class="mono">How each moment runs</span>
-        <h2 id="how-title">Watch. Choose. Reflect.</h2>
-        <div class="video" data-video="course-intro" role="img" aria-label="Video placeholder: course introduction">
-          <span class="corner corner--tl">Video · course-intro</span>
-          <div class="play"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30"/><path d="M26 21l18 11-18 11z"/></svg><span class="vt">Course introduction</span><span class="vn">Placeholder. Swap in the intro video, see README.</span></div>
-          <span class="corner corner--br">16:9 · captions required</span>
-        </div>
-        <div class="trio">
-          <div><span class="mono">01 · Watch</span><h3>The moment</h3><p>A short video sets up a situation a leader at Entegris could face on any given day.</p></div>
-          <div><span class="mono">02 · Choose</span><h3>Your response</h3><p>Three options. Each sends a different message to your team.</p></div>
-          <div><span class="mono">03 · Reflect</span><h3>The Playbook</h3><p>See how the Great Leader Playbook applies, then answer three questions for yourself.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="band band--paper" id="outline" aria-labelledby="outline-title">
-      <div class="wrap">
-        <span class="mono">Course outline</span>
-        <h2 id="outline-title">Leadership moments</h2>
-        <ol class="outline">
-          <li>
-            <a href="modules/reinforce-or-reclaim.html" data-module-link="glp-reinforce-or-reclaim">
-              <span class="num">01</span>
-              <span><span class="title">Reinforce or Reclaim?</span><span class="desc" style="display:block">A team member is leading. Under pressure, do you step in or stay behind them?</span></span>
-              <span class="behavior mono">Empowerment</span>
-              <span class="status mono"><span class="chip chip--open">Open</span></span>
-            </a>
-          </li>
-          <li>
-            <div class="row" aria-label="Moment 2 placeholder">
-              <span class="num">02</span>
-              <span><span class="title">Next moment</span><span class="desc" style="display:block">Add the next leadership moment from the source course.</span></span>
-              <span class="behavior mono">—</span>
-              <span class="status mono"><span class="chip chip--soon">Planned</span></span>
-            </div>
-          </li>
-          <li>
-            <div class="row" aria-label="Moment 3 placeholder">
-              <span class="num">03</span>
-              <span><span class="title">Next moment</span><span class="desc" style="display:block">Add the next leadership moment from the source course.</span></span>
-              <span class="behavior mono">—</span>
-              <span class="status mono"><span class="chip chip--soon">Planned</span></span>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-  </main>
+    <main id="main" tabindex="-1"></main>
+  </div>
 
   <footer class="site-footer">
     <div class="wrap">
-      <span class="mono">© 1994-2026 Entegris. All Rights Reserved.</span>
-      <span class="mono">Internal training material</span>
+      <img src="assets/entegris-logo.png" alt="Entegris">
+      <span id="ftr-copy">© 1994-2026 Entegris. All Rights Reserved.</span>
+      <span id="ftr-internal">Internal training material</span>
     </div>
   </footer>
 
-  <script src="js/course.js"></script>
+  <script src="js/content/en.js"></script>
+  <script src="js/content/zh-Hans.js"></script>
+  <script src="js/content/zh-Hant.js"></script>
+  <script src="js/content/fr.js"></script>
+  <script src="js/content/de.js"></script>
+  <script src="js/content/he.js"></script>
+  <script src="js/content/ms.js"></script>
+  <script src="js/content/ja.js"></script>
+  <script src="js/content/ko.js"></script>
+  <script src="js/mesh.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
