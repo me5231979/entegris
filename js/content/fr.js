@@ -121,7 +121,7 @@ window.ENTG_CONTENT.fr = {
       title: 'Moment de leadership : renforcer ou reprendre ?',
       short: 'Renforcer ou reprendre ?',
       blocks: [
-        { type: 'text', html: 'Renforcer la confiance et reprendre le cap sont des compétences de leadership essentielles. Les leaders efficaces savent quand prendre du recul pour responsabiliser leurs équipes et quand intervenir pour réaligner les priorités. En renforçant la confiance, vous créez un environnement où chacun se sent en mesure de prendre ses responsabilités et de décider. Reprendre le cap garantit que l’équipe reste alignée sur les objectifs globaux, même dans les moments difficiles. L’équilibre entre ces deux actions renforce la collaboration et conduit à la réussite.' },
+        { type: 'text', html: 'Quand un membre de l’équipe pilote, votre réponse renforce sa responsabilité ou la lui reprend discrètement. Les leaders efficaces font la différence. En renforçant la responsabilité, vous créez un environnement où chacun se sent en confiance pour décider, et pour être vu en train de décider.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761,8 Ko', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Renforcer ou reprendre ?' },
         { type: 'text', html: 'Dans ce moment de leadership, vous explorerez une tension courante : quand un membre de l’équipe pilote, intervenez-vous ou restez-vous en soutien ? Ces moments surviennent souvent vite et sous pression. Votre réponse peut renforcer la responsabilité et la crédibilité, ou reprendre l’autorité sans le vouloir.' },
@@ -141,7 +141,7 @@ window.ENTG_CONTENT.fr = {
           { q: 'Comment mon comportement dans les moments très visibles peut-il renforcer ou affaiblir la responsabilisation ?', hint: 'Intervenez-vous quand les enjeux montent ? Répondez-vous aux questions adressées à votre équipe ? Ou restez-vous en retrait pour la laisser piloter ?' },
           { q: 'Comment mon équipe pourrait-elle fonctionner plus en autonomie dans six mois si je la responsabilise davantage aujourd’hui ?', hint: 'Propose-t-elle des solutions au lieu de remonter les problèmes ? Prend-elle en charge les échanges avec les parties prenantes ? Son jugement progresse-t-il ?' }
         ] },
-        { type: 'quote', text: 'Reprenez le cap et renforcez vos priorités ; la réussite commence par la clarté et la détermination.' }
+        { type: 'quote', text: 'La responsabilisation ne se déclare pas. C’est ce que votre équipe vit dans les moments qui comptent.' }
       ]
     },
     {

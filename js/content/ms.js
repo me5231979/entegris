@@ -121,7 +121,7 @@ window.ENTG_CONTENT.ms = {
       title: 'Detik Kepimpinan: Perkukuh atau Ambil Semula?',
       short: 'Perkukuh atau Ambil Semula?',
       blocks: [
-        { type: 'text', html: 'Memperkukuh kepercayaan dan mengambil semula fokus adalah kemahiran kepimpinan yang penting. Pemimpin yang berkesan memahami bila masanya untuk berundur bagi memperkasa pasukan mereka dan bila masanya untuk masuk campur bagi menyelaraskan semula keutamaan. Dengan memperkukuh kepercayaan, anda mewujudkan persekitaran yang membolehkan orang lain berasa yakin untuk mengambil pemilikan dan membuat keputusan. Mengambil semula fokus memastikan pasukan kekal selaras dengan matlamat menyeluruh, walaupun dalam detik yang mencabar. Mengimbangi kedua-dua tindakan ini mengukuhkan kerjasama dan memacu kejayaan.' },
+        { type: 'text', html: 'Apabila seorang ahli pasukan memimpin, tindak balas anda sama ada memperkukuh pemilikan mereka atau mengambilnya semula secara senyap. Pemimpin yang berkesan tahu perbezaannya. Dengan memperkukuh pemilikan, anda mewujudkan persekitaran yang membuatkan orang lain yakin untuk membuat keputusan dan dilihat membuatnya.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Perkukuh atau Ambil Semula?' },
         { type: 'text', html: 'Dalam detik kepimpinan ini, anda akan meneroka satu ketegangan yang lazim: apabila seorang ahli pasukan sedang memimpin, adakah anda masuk campur, atau kekal menyokong di belakang mereka? Detik-detik ini sering berlaku dengan pantas dan di bawah tekanan. Tindak balas anda boleh sama ada memperkukuh pemilikan dan kredibiliti atau secara tidak sengaja mengambil semula kuasa.' },
@@ -141,7 +141,7 @@ window.ENTG_CONTENT.ms = {
           { q: 'Bagaimanakah tingkah laku saya dalam detik yang mendapat perhatian tinggi mungkin memperkukuh atau melemahkan pemerkasaan?', hint: 'Adakah saya masuk campur apabila risiko meningkat? Menjawab soalan yang ditujukan kepada pasukan saya? Atau kekal di belakang mereka dan membiarkan mereka memimpin?' },
           { q: 'Bagaimanakah pasukan saya boleh beroperasi dengan lebih berdikari enam bulan dari sekarang jika saya lebih memperkasa mereka hari ini?', hint: 'Adakah mereka mencadangkan penyelesaian dan bukan sekadar menyerahkan masalah kepada anda? Mengambil tanggungjawab penuh terhadap perbualan dengan pihak berkepentingan? Berkembang dalam membuat pertimbangan?' }
         ] },
-        { type: 'quote', text: 'Ambil semula fokus anda dan perkukuh keutamaan anda; kejayaan bermula dengan kejelasan dan keazaman.' }
+        { type: 'quote', text: 'Pemerkasaan bukan sesuatu yang anda isytiharkan. Ia sesuatu yang dialami pasukan anda pada detik-detik yang penting.' }
       ]
     },
     {

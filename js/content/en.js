@@ -122,7 +122,7 @@ window.ENTG_CONTENT.en = {
       title: 'Leadership Moment: Reinforce or Reclaim?',
       short: 'Reinforce or Reclaim?',
       blocks: [
-        { type: 'text', html: 'Reinforcing trust and reclaiming focus are essential leadership skills. Effective leaders understand when to step back to empower their teams and when to step in to realign priorities. By reinforcing trust, you create an environment where others feel confident to take ownership and make decisions. Reclaiming focus ensures that the team stays aligned with overarching goals, even during challenging moments. Balancing these actions strengthens collaboration and drives success.' },
+        { type: 'text', html: 'When a team member is leading, your response either reinforces their ownership or quietly reclaims it. Effective leaders know the difference. By reinforcing ownership, you create an environment where others feel confident to take decisions and be seen taking them.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Reinforce or Reclaim?' },
         { type: 'text', html: 'In this leadership moment, you’ll explore a common tension: when a team member is leading, do you step in, or do you stand behind them? These moments often happen quickly and under pressure. Your response can either reinforce ownership and credibility or unintentionally reclaim authority.' },
@@ -142,7 +142,7 @@ window.ENTG_CONTENT.en = {
           { q: 'How might my behavior in high-profile moments reinforce or weaken empowerment?', hint: 'Do I step in when the stakes rise? Answer questions directed to my team? Or stay behind them and let them lead?' },
           { q: 'How could my team operate more independently six months from now if I empower them more today?', hint: 'Are they proposing solutions instead of escalating problems? Owning stakeholder conversations? Growing in judgment?' }
         ] },
-        { type: 'quote', text: 'Reclaim your focus and reinforce your priorities; success begins with clarity and determination.' }
+        { type: 'quote', text: 'Empowerment is not something you declare. It is something your team experiences in the moments that count.' }
       ]
     },
     {

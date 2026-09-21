@@ -121,7 +121,7 @@ window.ENTG_CONTENT.de = {
       title: 'Führungsmoment: Stärken oder zurückholen?',
       short: 'Stärken oder zurückholen?',
       blocks: [
-        { type: 'text', html: 'Vertrauen zu stärken und den Fokus zurückzuholen sind zentrale Führungskompetenzen. Wirksame Führungskräfte wissen, wann sie zurücktreten sollten, um ihre Teams zu befähigen, und wann sie eingreifen müssen, um Prioritäten neu auszurichten. Indem Sie Vertrauen stärken, schaffen Sie ein Umfeld, in dem andere sich sicher fühlen, Verantwortung zu übernehmen und Entscheidungen zu treffen. Den Fokus zurückzuholen stellt sicher, dass das Team auch in schwierigen Momenten an den übergeordneten Zielen ausgerichtet bleibt. Die Balance zwischen beidem stärkt die Zusammenarbeit und führt zum Erfolg.' },
+        { type: 'text', html: 'Wenn ein Teammitglied führt, stärkt Ihre Reaktion entweder dessen Verantwortung oder holt sie unbemerkt zurück. Gute Führungskräfte kennen den Unterschied. Indem Sie Verantwortung stärken, schaffen Sie ein Umfeld, in dem andere sich zutrauen, Entscheidungen zu treffen und dabei sichtbar zu sein.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761,8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Stärken oder zurückholen?' },
         { type: 'text', html: 'In diesem Führungsmoment erkunden Sie ein häufiges Spannungsfeld: Wenn ein Teammitglied führt, greifen Sie ein oder stehen Sie hinter ihm? Diese Momente passieren oft schnell und unter Druck. Ihre Reaktion kann Verantwortung und Glaubwürdigkeit stärken oder unbeabsichtigt Befugnis zurückholen.' },
@@ -141,7 +141,7 @@ window.ENTG_CONTENT.de = {
           { q: 'Wie könnte mein Verhalten in exponierten Momenten Empowerment stärken oder schwächen?', hint: 'Greifen Sie ein, wenn viel auf dem Spiel steht? Beantworten Sie Fragen, die an Ihr Team gerichtet sind? Oder bleiben Sie im Hintergrund und lassen Ihr Team führen?' },
           { q: 'Wie könnte mein Team in sechs Monaten eigenständiger arbeiten, wenn ich es heute stärker befähige?', hint: 'Schlägt es Lösungen vor, statt Probleme zu eskalieren? Führt es die Gespräche mit Stakeholdern selbst? Wächst sein Urteilsvermögen?' }
         ] },
-        { type: 'quote', text: 'Holen Sie Ihren Fokus zurück und stärken Sie Ihre Prioritäten; Erfolg beginnt mit Klarheit und Entschlossenheit.' }
+        { type: 'quote', text: 'Empowerment lässt sich nicht verkünden. Ihr Team erlebt es in den Momenten, auf die es ankommt.' }
       ]
     },
     {
