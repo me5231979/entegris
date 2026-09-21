@@ -16,7 +16,7 @@ window.ENTG_CONTENT.ms = {
     reflect: 'Renungkan', notesLocal: 'Nota anda disimpan bersama kemajuan kursus anda.',
     footerCopy: '© 1994-2026 Entegris. Hak cipta terpelihara.', footerInternal: 'Bahan latihan dalaman',
     thatsAWrap: 'Anda telah menyelesaikan setiap pelajaran.', backToOutline: 'Kembali ke rangka kursus',
-    objectives: 'Objektif', expand: 'Kembangkan', translationNote: 'Draf terjemahan. Sila minta penutur asli menyemak sebelum dikeluarkan.'
+    objectives: 'Objektif', expand: 'Kembangkan', printNotes: 'Cetak nota saya', printTitle: 'Nota dan tindakan saya', noAnswer: '(belum ada jawapan)', myChoice: 'Pilihan saya', translationNote: 'Draf terjemahan. Sila minta penutur asli menyemak sebelum dikeluarkan.'
   },
   home: {
     title: 'Profil Pemimpin Hebat',

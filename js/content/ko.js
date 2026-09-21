@@ -17,7 +17,7 @@ window.ENTG_CONTENT.ko = {
     reflect: '성찰', notesLocal: '메모는 과정 진행 상황과 함께 저장됩니다.',
     footerCopy: '© 1994-2026 Entegris. All Rights Reserved.', footerInternal: '사내 교육 자료',
     thatsAWrap: '모든 레슨을 완료했습니다.', backToOutline: '과정 개요로 돌아가기',
-    objectives: '학습 목표', expand: '펼치기', translationNote: '번역 초안입니다. 배포 전에 원어민 검토를 받으시기 바랍니다.'
+    objectives: '학습 목표', expand: '펼치기', printNotes: '내 메모 인쇄', printTitle: '내 메모와 실행 계획', noAnswer: '(아직 답변 없음)', myChoice: '내 선택', translationNote: '번역 초안입니다. 배포 전에 원어민 검토를 받으시기 바랍니다.'
   },
   home: {
     title: '그레이트 리더 프로필',

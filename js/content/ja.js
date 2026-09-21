@@ -15,7 +15,7 @@ window.ENTG_CONTENT.ja = {
     reflect: '振り返り', notesLocal: 'メモはコースの進捗とともに保存されます。',
     footerCopy: '© 1994-2026 Entegris. All Rights Reserved.', footerInternal: '社内研修資料',
     thatsAWrap: 'すべてのレッスンを完了しました。', backToOutline: 'コース概要に戻る',
-    objectives: '学習目標', expand: '展開', translationNote: '翻訳ドラフトです。公開前にネイティブスピーカーによる確認をお願いします。'
+    objectives: '学習目標', expand: '展開', printNotes: 'メモを印刷', printTitle: '私のメモと実行アクション', noAnswer: '（未回答）', myChoice: '私の選択', translationNote: '翻訳ドラフトです。公開前にネイティブスピーカーによる確認をお願いします。'
   },
   home: {
     title: 'グレートリーダー・プロファイル',

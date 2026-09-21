@@ -252,7 +252,7 @@
       ta.addEventListener('blur', function () { clearTimeout(timer); persist(); });
       return el('li', null, [el('label', { for: id, text: q.q }), ta, el('p', { class: 'hint', text: q.hint })]);
     }));
-    return el('div', { class: 'block reflect' }, [el('span', { class: 'eyebrow cond', text: C.ui.reflect }), el('h2', { text: b.title }), el('p', { text: b.intro }), el('p', { class: 'muted', text: C.ui.notesLocal }), list]);
+    return el('div', { class: 'block reflect' }, [el('span', { class: 'eyebrow cond', text: C.ui.reflect }), el('h2', { text: b.title }), el('p', { text: b.intro }), el('p', { class: 'muted', text: C.ui.notesLocal }), list, printButton(C)]);
   }
 
   function blockGodo(b, lesson, C) {
@@ -264,7 +264,62 @@
       inp.addEventListener('input', function () { s.notes['godo-' + i] = inp.value; s.started = true; persist(); });
       return el('li', null, [el('label', { for: id, text: label }), inp]);
     }));
-    return el('div', { class: 'block reflect' }, [el('span', { class: 'eyebrow cond', text: C.ui.reflect }), el('h2', { text: b.title }), el('p', { text: b.intro }), list]);
+    return el('div', { class: 'block reflect' }, [el('span', { class: 'eyebrow cond', text: C.ui.reflect }), el('h2', { text: b.title }), el('p', { text: b.intro }), list, printButton(C)]);
+  }
+
+  /* ---------- Print my notes ---------- */
+  function printButton(C) {
+    var btn = el('button', { class: 'btn btn--outline btn--small', type: 'button' }, [
+      svg('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>'),
+      el('span', { text: C.ui.printNotes })
+    ]);
+    btn.addEventListener('click', function () { printNotes(); });
+    return el('div', { class: 'actions' }, [btn]);
+  }
+
+  function printNotes() {
+    var C = I.content(); var L = lessons();
+    var box = document.getElementById('print-notes');
+    if (!box) { box = el('section', { id: 'print-notes', 'aria-hidden': 'true' }); document.body.appendChild(box); }
+    box.innerHTML = '';
+    var logo = document.querySelector('.logo img');
+    if (logo) { box.appendChild(el('img', { src: logo.getAttribute('src'), alt: 'Entegris' })); }
+    box.appendChild(el('h1', { text: C.ui.printTitle }));
+    box.appendChild(el('p', { class: 'sub', text: C.ui.courseTitle + ' · ' + C.ui.courseSubtitle }));
+    var learner = scorm && scorm.learnerName ? scorm.learnerName() : '';
+    box.appendChild(el('p', { class: 'meta', text: (learner ? learner + ' · ' : '') + new Date().toLocaleDateString(I.current()) }));
+    function answer(v) { return v && String(v).trim() ? el('p', { class: 'answer', text: v }) : el('p', { class: 'answer empty', text: C.ui.noAnswer }); }
+    L.forEach(function (lesson, i) {
+      var s = ls(lesson.id); var notes = s.notes || {}; var choices = s.choices || {};
+      var parts = [];
+      lesson.blocks.forEach(function (b) {
+        if (b.type === 'scenario') {
+          var key = choices[b.id]; var opt = null;
+          b.options.forEach(function (o) { if (o.key === key) { opt = o; } });
+          parts.push(el('div', { class: 'label', text: C.ui.myChoice }));
+          parts.push(el('h3', { text: b.prompt }));
+          parts.push(opt ? el('p', { class: 'answer', text: opt.key.toUpperCase() + ' · ' + opt.title + ' — ' + opt.feedback }) : el('p', { class: 'answer empty', text: C.ui.noAnswer }));
+        }
+        if (b.type === 'reflect') {
+          parts.push(el('div', { class: 'label', text: C.ui.reflect }));
+          parts.push(el('h3', { text: b.title }));
+          b.questions.forEach(function (q, qi) { parts.push(el('p', { html: '<strong>' + String(qi + 1) + '. </strong>' + q.q.replace(/</g, '&lt;') })); parts.push(answer(notes[b.id + '-' + qi])); });
+        }
+        if (b.type === 'godo') {
+          parts.push(el('div', { class: 'label', text: C.ui.reflect }));
+          parts.push(el('h3', { text: b.title }));
+          b.labels.forEach(function (label, li) { parts.push(el('p', { html: '<strong>' + label.replace(/</g, '&lt;') + '</strong>' })); parts.push(answer(notes['godo-' + li])); });
+        }
+      });
+      if (parts.length) {
+        var sec = el('div', { class: 'print-lesson' }, [el('h2', { text: I.fmt(C.ui.lessonOf, { a: i + 1, b: L.length }) + ' · ' + lesson.title })]);
+        parts.forEach(function (x) { sec.appendChild(x); });
+        box.appendChild(sec);
+      }
+    });
+    var prev = document.title; document.title = C.ui.printTitle + ' · ' + C.ui.courseTitle;
+    window.print();
+    setTimeout(function () { document.title = prev; }, 1000);
   }
 
   function renderBlock(b, lesson, C) {

@@ -15,7 +15,7 @@ window.ENTG_CONTENT.he = {
     reflect: 'רפלקציה', notesLocal: 'ההערות שלכם נשמרות יחד עם התקדמותכם בקורס.',
     footerCopy: '© 1994-2026 Entegris. כל הזכויות שמורות.', footerInternal: 'חומר הדרכה פנימי',
     thatsAWrap: 'השלמתם את כל השיעורים.', backToOutline: 'חזרה לתוכנית הקורס',
-    objectives: 'מטרות', expand: 'הרחבה', translationNote: 'טיוטת תרגום. נא להעביר לבדיקה של דובר עברית ילידי לפני השחרור.'
+    objectives: 'מטרות', expand: 'הרחבה', printNotes: 'הדפסת ההערות שלי', printTitle: 'ההערות ופעולות היישום שלי', noAnswer: '(עדיין אין תשובה)', myChoice: 'הבחירה שלי', translationNote: 'טיוטת תרגום. נא להעביר לבדיקה של דובר עברית ילידי לפני השחרור.'
   },
   home: {
     title: 'פרופיל המנהיג הדגול',

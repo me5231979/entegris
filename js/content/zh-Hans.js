@@ -16,7 +16,7 @@ window.ENTG_CONTENT['zh-Hans'] = {
     reflect: '反思', notesLocal: '您的笔记将与课程进度一同保存。',
     footerCopy: '© 1994-2026 Entegris。保留所有权利。', footerInternal: '内部培训资料',
     thatsAWrap: '您已完成所有课程单元。', backToOutline: '返回课程大纲',
-    objectives: '学习目标', expand: '展开', translationNote: '翻译初稿。发布前请由母语人士审校。'
+    objectives: '学习目标', expand: '展开', printNotes: '打印我的笔记', printTitle: '我的笔记与行动计划', noAnswer: '（尚未作答）', myChoice: '我的选择', translationNote: '翻译初稿。发布前请由母语人士审校。'
   },
   home: {
     title: '卓越领导者画像',

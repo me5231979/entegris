@@ -17,7 +17,7 @@ window.ENTG_CONTENT['zh-Hant'] = {
     reflect: '反思', notesLocal: '您的筆記會與課程進度一併儲存。',
     footerCopy: '© 1994-2026 Entegris。保留所有權利。', footerInternal: '內部培訓資料',
     thatsAWrap: '您已完成所有課程單元。', backToOutline: '返回課程大綱',
-    objectives: '學習目標', expand: '展開', translationNote: '翻譯草稿。發布前請由母語人士審閱。'
+    objectives: '學習目標', expand: '展開', printNotes: '列印我的筆記', printTitle: '我的筆記與行動計畫', noAnswer: '（尚未作答）', myChoice: '我的選擇', translationNote: '翻譯草稿。發布前請由母語人士審閱。'
   },
   home: {
     title: '卓越領導者畫像',

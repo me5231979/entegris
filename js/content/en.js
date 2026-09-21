@@ -17,7 +17,7 @@ window.ENTG_CONTENT.en = {
     reflect: 'Reflect', notesLocal: 'Your notes are saved with your course progress.',
     footerCopy: '© 1994-2026 Entegris. All Rights Reserved.', footerInternal: 'Internal training material',
     thatsAWrap: 'You have completed every lesson.', backToOutline: 'Back to the outline',
-    objectives: 'Objectives', expand: 'Expand', translationNote: ''
+    objectives: 'Objectives', expand: 'Expand', printNotes: 'Print my notes', printTitle: 'My notes and go-do actions', noAnswer: '(no answer yet)', myChoice: 'My choice', translationNote: ''
   },
   home: {
     title: 'The Great Leader Profile',

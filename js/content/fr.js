@@ -16,7 +16,7 @@ window.ENTG_CONTENT.fr = {
     reflect: 'Réflexion', notesLocal: 'Vos notes sont enregistrées avec votre progression dans le cours.',
     footerCopy: '© 1994-2026 Entegris. Tous droits réservés.', footerInternal: 'Support de formation interne',
     thatsAWrap: 'Vous avez terminé toutes les leçons.', backToOutline: 'Retour au programme',
-    objectives: 'Objectifs', expand: 'Développer', translationNote: 'Version de traduction provisoire. Merci de la faire relire par un locuteur natif avant publication.'
+    objectives: 'Objectifs', expand: 'Développer', printNotes: 'Imprimer mes notes', printTitle: 'Mes notes et actions à mener', noAnswer: '(pas encore de réponse)', myChoice: 'Mon choix', translationNote: 'Version de traduction provisoire. Merci de la faire relire par un locuteur natif avant publication.'
   },
   home: {
     title: 'Le profil du grand leader',

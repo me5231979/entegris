@@ -16,7 +16,7 @@ window.ENTG_CONTENT.de = {
     reflect: 'Reflektieren', notesLocal: 'Ihre Notizen werden zusammen mit Ihrem Kursfortschritt gespeichert.',
     footerCopy: '© 1994-2026 Entegris. Alle Rechte vorbehalten.', footerInternal: 'Internes Schulungsmaterial',
     thatsAWrap: 'Sie haben alle Lektionen abgeschlossen.', backToOutline: 'Zurück zur Übersicht',
-    objectives: 'Lernziele', expand: 'Aufklappen', translationNote: 'Übersetzungsentwurf. Bitte vor der Freigabe von einem Muttersprachler prüfen lassen.'
+    objectives: 'Lernziele', expand: 'Aufklappen', printNotes: 'Meine Notizen drucken', printTitle: 'Meine Notizen und Go-Do-Aktionen', noAnswer: '(noch keine Antwort)', myChoice: 'Meine Wahl', translationNote: 'Übersetzungsentwurf. Bitte vor der Freigabe von einem Muttersprachler prüfen lassen.'
   },
   home: {
     title: 'Das Great Leader Profile',
