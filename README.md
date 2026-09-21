@@ -5,10 +5,14 @@ Web-based course built as plain HTML, CSS, and JavaScript. No build step. Open `
 ## Structure
 
 ```
+launch.html                      SCORM 1.2 launch page (LMS entry point, frames index.html)
 index.html                       Course home and outline
 modules/reinforce-or-reclaim.html  Moment 1 (from the Articulate source course)
+imsmanifest.xml                  SCORM 1.2 manifest
 css/entegris.css                 Entegris design tokens and components
 js/course.js                     Option selection, reflection notes, progress, completion
+js/scorm-api.js                  SCORM 1.2 API wrapper (used by launch.html)
+scripts/build-scorm.sh           Packages the course plus videos into a SCORM zip
 assets/entegris-logo.png         Logo
 assets/video/                    Course videos, posters, and captions (see its README)
 ```
@@ -51,6 +55,21 @@ The container keeps the 16:9 frame. Include captions for accessibility.
 
 Tokens follow the Entegris brand standards: neutral base with a warm bias toward the wordmark grey, one red accent used sparingly, square corners, Archivo display with Inter body and IBM Plex Mono for step counters and meta, visible focus rings, reduced-motion support. Red (`#BD2227`) and wordmark grey (`#6F635A`) are sampled from the logo file.
 
-## Progress and completion
+## SCORM 1.2 packaging
 
-Choice, reflection notes, and completion are stored per browser in `localStorage`. To report to an LMS, replace the `markComplete` function in `js/course.js` with a SCORM or xAPI call.
+Videos stay out of git. At packaging time, point the build script at the folder holding the final MP4, JPG poster, and VTT caption files (named per `assets/video/README.md`):
+
+```
+scripts/build-scorm.sh /path/to/final-videos
+```
+
+This writes `dist/the-great-leader-profile-daily-leadership-at-entegris-scorm12.zip`, with every media file added to the manifest. Upload that zip to the LMS. Requires `python3` for zipping.
+
+How the LMS integration works:
+
+- `launch.html` is the SCO entry point. It finds the LMS `API` object, calls `LMSInitialize`, and frames `index.html`.
+- Course pages talk to `window.parent.EntegrisScorm`. Choice, reflection notes, and completion are stored in `cmi.suspend_data` (SCORM 1.2 caps it at 4096 characters, so long reflections are trimmed).
+- Marking Moment 1 complete sets `cmi.core.lesson_status` to `completed` and a score of 100. When more moments are added, move that call so it fires only after every module is complete.
+- `LMSFinish` runs when the launch page unloads, with `cmi.core.session_time` set.
+
+Outside an LMS (the review link, or opening the files directly), everything falls back to `localStorage` and works the same.

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Great Leader Profile</title>
+  <style>
+    html, body { height: 100%; margin: 0; background: #FFFFFF; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <!-- SCORM 1.2 launch page. Owns the LMS session; the course runs in the frame below. -->
+  <iframe id="course" src="index.html" title="The Great Leader Profile course"></iframe>
+  <script src="js/scorm-api.js"></script>
+  <script>
+    (function () {
+      window.EntegrisScorm.init();
+      var finished = false;
+      function finish() { if (finished) { return; } finished = true; window.EntegrisScorm.finish(); }
+      window.addEventListener('pagehide', finish);
+      window.addEventListener('beforeunload', finish);
+      window.addEventListener('unload', finish);
+    })();
+  </script>
+</body>
+</html>

@@ -1,37 +1,40 @@
 /* Entegris course: light interactivity, no dependencies.
-   - Option selection reveals feedback.
-   - Reflection answers persist per browser in localStorage (best effort).
-   - Progress bar tracks how far the learner has scrolled through the steps.
-   - Module completion is stored per browser. Replace with an LMS/SCORM call if needed. */
+   State (choice, reflection notes, completion) goes to the LMS through the SCORM 1.2
+   wrapper in launch.html when the course runs inside it. Outside an LMS it falls back
+   to localStorage so the pages still work standalone. */
 (function () {
   'use strict';
 
-  var storageKey = document.body.getAttribute('data-module-id') || 'entegris-course';
+  var moduleId = document.body.getAttribute('data-module-id') || '';
+  var scorm = null;
+  try { if (window.parent && window.parent !== window && window.parent.EntegrisScorm) { scorm = window.parent.EntegrisScorm; } } catch (e) { scorm = null; }
 
   function load() {
-    try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (e) { return {}; }
+    if (scorm && moduleId) { return scorm.getModuleState(moduleId) || {}; }
+    try { return JSON.parse(localStorage.getItem(moduleId || 'entegris-course') || '{}'); } catch (e) { return {}; }
   }
-  function save(state) {
-    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  function save(s) {
+    if (scorm && moduleId) { scorm.setModuleState(moduleId, s); return; }
+    try { localStorage.setItem(moduleId || 'entegris-course', JSON.stringify(s)); } catch (e) { /* storage unavailable */ }
+  }
+  function moduleStateFor(id) {
+    if (scorm) { return scorm.getModuleState(id) || {}; }
+    try { return JSON.parse(localStorage.getItem(id) || '{}'); } catch (e) { return {}; }
   }
   var state = load();
 
   /* Options */
-  var optionGroups = document.querySelectorAll('[data-options]');
-  Array.prototype.forEach.call(optionGroups, function (group) {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-options]'), function (group) {
     var buttons = group.querySelectorAll('.option');
     var feedbacks = group.parentNode.querySelectorAll('.feedback');
-    var nextBtn = group.parentNode.querySelector('[data-requires-choice]');
 
     function choose(key) {
       Array.prototype.forEach.call(buttons, function (b) {
         b.setAttribute('aria-pressed', b.getAttribute('data-option') === key ? 'true' : 'false');
       });
       Array.prototype.forEach.call(feedbacks, function (f) {
-        var show = f.getAttribute('data-feedback') === key;
-        if (show) { f.removeAttribute('hidden'); } else { f.setAttribute('hidden', ''); }
+        f.hidden = f.getAttribute('data-feedback') !== key;
       });
-      if (nextBtn) { nextBtn.removeAttribute('aria-disabled'); }
       state.choice = key;
       save(state);
     }
@@ -40,7 +43,7 @@
       b.addEventListener('click', function () {
         choose(b.getAttribute('data-option'));
         var fb = group.parentNode.querySelector('.feedback:not([hidden])');
-        if (fb) { fb.setAttribute('tabindex', '-1'); fb.focus({ preventScroll: false }); }
+        if (fb) { fb.setAttribute('tabindex', '-1'); fb.focus(); }
       });
     });
 
@@ -48,31 +51,31 @@
   });
 
   /* Reflection persistence */
-  var areas = document.querySelectorAll('textarea[data-reflect]');
-  Array.prototype.forEach.call(areas, function (ta) {
+  Array.prototype.forEach.call(document.querySelectorAll('textarea[data-reflect]'), function (ta) {
     var key = ta.getAttribute('data-reflect');
     if (state.reflect && state.reflect[key]) { ta.value = state.reflect[key]; }
+    var timer = null;
     ta.addEventListener('input', function () {
       state.reflect = state.reflect || {};
       state.reflect[key] = ta.value;
-      save(state);
+      clearTimeout(timer);
+      timer = setTimeout(function () { save(state); }, 400);
     });
+    ta.addEventListener('blur', function () { clearTimeout(timer); save(state); });
   });
 
   /* Progress bar */
   var bar = document.querySelector('.progress-bar span');
   var label = document.querySelector('[data-progress-label]');
   var steps = document.querySelectorAll('.step');
+  function pad2(n) { return String(n).padStart(2, '0'); }
   function updateProgress() {
     if (!bar || !steps.length) { return; }
     var mid = window.scrollY + window.innerHeight * 0.5;
     var reached = 0;
-    Array.prototype.forEach.call(steps, function (s, i) {
-      if (s.offsetTop <= mid) { reached = i + 1; }
-    });
-    var pct = Math.round((reached / steps.length) * 100);
-    bar.style.width = pct + '%';
-    if (label) { label.textContent = 'Step ' + String(Math.max(reached, 1)).padStart(2, '0') + ' / ' + String(steps.length).padStart(2, '0'); }
+    Array.prototype.forEach.call(steps, function (s, i) { if (s.offsetTop <= mid) { reached = i + 1; } });
+    bar.style.width = Math.round((reached / steps.length) * 100) + '%';
+    if (label) { label.textContent = 'Step ' + pad2(Math.max(reached, 1)) + ' / ' + pad2(steps.length); }
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress);
@@ -81,30 +84,27 @@
   /* Completion */
   var completeBtn = document.querySelector('[data-complete]');
   var completeStatus = document.querySelector('.status-complete');
-  function markComplete() {
-    state.complete = true;
-    save(state);
-    if (completeStatus) { completeStatus.removeAttribute('hidden'); }
+  function showComplete() {
+    if (completeStatus) { completeStatus.hidden = false; }
     if (completeBtn) { completeBtn.setAttribute('aria-disabled', 'true'); completeBtn.textContent = 'Moment 1 complete'; }
   }
   if (completeBtn) {
     completeBtn.addEventListener('click', function () {
       if (completeBtn.getAttribute('aria-disabled') === 'true') { return; }
-      markComplete();
+      state.complete = true;
+      save(state);
+      if (scorm) { scorm.markComplete(); }
+      showComplete();
     });
-    if (state.complete) { markComplete(); }
+    if (state.complete) { showComplete(); }
   }
 
-  /* Course home: show completed badges */
-  var links = document.querySelectorAll('[data-module-link]');
-  Array.prototype.forEach.call(links, function (a) {
-    var id = a.getAttribute('data-module-link');
-    try {
-      var s = JSON.parse(localStorage.getItem(id) || '{}');
-      if (s.complete) {
-        var m = a.querySelector('.chip');
-        if (m) { m.textContent = 'Complete'; m.className = 'chip chip--done'; }
-      }
-    } catch (e) { /* ignore */ }
+  /* Course home: show completed chips */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-module-link]'), function (a) {
+    var s = moduleStateFor(a.getAttribute('data-module-link'));
+    if (s.complete) {
+      var chip = a.querySelector('.chip');
+      if (chip) { chip.textContent = 'Complete'; chip.className = 'chip chip--done'; }
+    }
   });
 })();
