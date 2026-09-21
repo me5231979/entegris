@@ -11,7 +11,7 @@ window.ENTG_CONTENT.ms = {
     continueBtn: 'Teruskan', completeCourse: 'Selesaikan kursus', courseCompleted: 'Kursus selesai',
     prev: 'Sebelumnya', next: 'Seterusnya', home: 'Laman utama kursus',
     videoPlaceholder: 'Pemegang tempat video', captions: '16:9 · sari kata diperlukan',
-    download: 'Muat turun', flip: 'Balikkan', select: 'Pilih {x}', selected: 'Dipilih',
+    download: 'Muat turun', flip: 'Balikkan kad', select: 'Pilih {x}', selected: 'Dipilih',
     yourChoice: 'Pilihan anda', chooseResponse: 'Pilih respons anda', pickClosest: 'Pilih opsyen yang paling hampir dengan tindakan yang akan anda ambil.',
     reflect: 'Renungkan', notesLocal: 'Nota anda disimpan bersama kemajuan kursus anda.',
     footerCopy: '© 1994-2026 Entegris. Hak cipta terpelihara.', footerInternal: 'Bahan latihan dalaman',
@@ -51,7 +51,7 @@ window.ENTG_CONTENT.ms = {
         { type: 'accordion', items: [
           { title: 'Tujuan GLP', html: '<p>Profil Pemimpin Hebat diwujudkan untuk mentakrifkan gambaran kepimpinan hebat di Entegris dan menetapkan jangkaan yang jelas bagi semua pemimpin. Ia berfungsi sebagai panduan praktikal yang membantu pemimpin menyelaraskan tindakan mereka dengan strategi syarikat sambil memberi ruang kepada gaya kepimpinan yang autentik dan tersendiri.</p><p>Dengan memberikan kejelasan ini, GLP memperkasa pemimpin untuk membuat keputusan yang konsisten dan memupuk budaya positif berprestasi tinggi di seluruh organisasi.</p>' },
           { title: 'Evolusi GLP', html: '<p>Sejak diperkenalkan pada 2018, GLP telah berkembang seiring dengan Entegris. Seiring dengan pertumbuhan organisasi kita dan cabaran baharu yang dihadapi, kita menyedari keperluan untuk menyemak semula dan menyegarkan profil ini agar mencerminkan realiti semasa kita.</p><p>GLP yang telah dikemas kini merangkumi jangkaan dan tingkah laku baharu, sekali gus memastikan ia kekal relevan dan berkesan sebagai panduan kepimpinan semasa tempoh perubahan dan pertumbuhan.</p>' },
-          { title: 'Ciri-ciri GLP', html: '<p>GLP menggariskan tujuh ciri teras yang mentakrifkan kepimpinan hebat di Entegris:</p><ul><li>Membina Bakat untuk Masa Depan</li><li>Memacu Perkongsian Merentas Organisasi Global Kita</li><li>Memupuk Inovasi</li><li>Memimpin dengan Kecekalan dan Kerendahan Hati</li><li>Membuat Keputusan Berasaskan Data dengan Pantas</li><li>Memacu Keutamaan Pelanggan</li><li>Memacu Akauntabiliti</li></ul>' },
+          { title: 'Ciri-ciri GLP', html: '<p>GLP menggariskan tujuh ciri teras yang mentakrifkan kepimpinan hebat di Entegris:</p><ul><li>Membina Bakat untuk Masa Depan</li><li>Memacu Perkongsian Merentas Organisasi Global Kita</li><li>Memupuk Inovasi</li><li>Memacu Akauntabiliti</li><li>Memimpin dengan Kecekalan dan Kerendahan Hati</li><li>Memacu Keutamaan Pelanggan</li><li>Membuat Keputusan Berasaskan Data dengan Pantas</li></ul>' },
           { title: 'GLP untuk Semua Pemimpin', html: '<p>Kepimpinan di Entegris tidak terhad kepada mereka yang mengurus kakitangan sahaja. GLP terpakai kepada semua orang, tanpa mengira jawatan atau peranan. Ia berkaitan dengan cara anda menampilkan diri, bekerjasama dan mengambil tanggungjawab dalam kerja harian anda.</p><p>Dengan menghayati GLP, setiap ahli pasukan boleh menyumbang kepada budaya kepimpinan kita dan memacu impak positif di seluruh organisasi.</p>' }
         ] },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
@@ -78,8 +78,8 @@ window.ENTG_CONTENT.ms = {
       title: 'Detik Kepimpinan: Kerjasama di Bawah Tekanan',
       short: 'Kerjasama di Bawah Tekanan',
       blocks: [
-        { type: 'text', html: 'Tekanan mendedahkan kepimpinan. Apabila tempoh masa semakin suntuk atau ketegangan meningkat, tindak balas anda membentuk kepercayaan, penyelarasan dan hasil. Dalam Detik Kepimpinan ini, anda akan meneroka bagaimana pemimpin yang mantap bekerjasama di bawah tekanan, mengekalkan kejelasan, memperkukuh pemilikan bersama, dan mencegah pembentukan silo.' },
-        { type: 'text', html: 'Semasa anda melalui modul ini, renungkan cara anda menampilkan diri pada saat yang paling penting.' },
+        { type: 'text', html: 'Tekanan mendedahkan kepimpinan. Apabila tempoh masa semakin suntuk atau ketegangan meningkat, tindak balas anda membentuk kepercayaan, penyelarasan dan hasil. Dalam detik kepimpinan ini, anda akan meneroka bagaimana pemimpin yang mantap bekerjasama di bawah tekanan, mengekalkan kejelasan, memperkukuh pemilikan bersama, dan mencegah pembentukan silo.' },
+        { type: 'text', html: 'Semasa anda melalui pelajaran ini, renungkan cara anda menampilkan diri pada saat yang paling penting.' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Pertumbuhan Kepimpinan Bermula dengan Kerjasama di Bawah Tekanan' },
         { type: 'text', html: 'Kerjasama benar-benar diuji apabila tekanan meningkat. Dalam situasi berisiko tinggi, pemimpin perlu mengimbangi kesegeraan dengan penyelarasan, menyatukan orang dan bukannya membiarkan silo atau budaya saling menyalahkan bertapak. Cara anda bertindak balas dalam detik-detik ini membentuk kepercayaan, prestasi dan budaya.' },
@@ -101,7 +101,7 @@ window.ENTG_CONTENT.ms = {
       short: 'Melepaskan pada Tahap yang Betul',
       blocks: [
         { type: 'text', html: 'Delegasi bukan sekadar memberikan tugas; ia tentang memindahkan tahap kuasa yang betul. Dalam detik kepimpinan ini, anda akan meneliti ketegangan antara kekal terlibat dan benar-benar berundur. Pemimpin yang berkesan melepaskan secara bersengaja. Mereka mewujudkan ruang untuk orang lain memimpin, membuat keputusan, dan membina kredibiliti walaupun ketika risikonya tinggi. Melepaskan pada tahap yang betul mengukuhkan kepercayaan, membangunkan keupayaan, dan memperkukuh pemilikan.' },
-        { type: 'text', html: 'Semasa anda melalui bahagian ini, fikirkan: Adakah anda sekadar mendelegasikan tugas atau memperkasa kepimpinan?' },
+        { type: 'text', html: 'Semasa anda melalui pelajaran ini, fikirkan: Adakah anda sekadar mendelegasikan tugas atau memperkasa kepimpinan?' },
         { type: 'download', name: 'Entegris Great Leader Profile & Playbook 2026.pptx', meta: 'PPTX · 761.8 KB', href: 'assets/docs/Entegris-Great-Leader-Profile-Playbook-2026.pptx' },
         { type: 'heading', text: 'Pertumbuhan Kepimpinan Berterusan dengan Melepaskan pada Tahap yang Betul' },
         { type: 'text', html: 'Sekarang, tonton video dan beri perhatian kepada bagaimana kuasa sama ada diperkukuh atau diambil semula pada detik itu. Semasa menonton, rujuk Buku Panduan GLP anda dan renungkan cara anda mendelegasikan tugas. Adakah anda memindahkan pemilikan sebenar, atau kekal lebih dekat daripada yang perlu?' },
@@ -137,8 +137,8 @@ window.ENTG_CONTENT.ms = {
           { key: 'c', title: 'Bertemu dan dengar dahulu', text: 'Anda menjadualkan masa dengan pasukan. Sebelum memberi input, anda meminta mereka menerangkan pendekatan mereka dan cara mereka merangka pembentangan itu.', tag: 'Memperkukuh pemilikan', good: true, feedback: 'Anda hadir, anda membimbing, dan anda menahan diri daripada mengambil alih kawalan apabila tekanan meningkat. Jessica mengekalkan pemilikan yang jelas dan kuasa membuat keputusan yang sebenar. Pasukan berasa diperkasa untuk terus maju.' }
         ] },
         { type: 'reflect', id: 'l4', title: 'Adakah saya benar-benar memperkasa pasukan saya?', intro: 'Pemerkasaan bukan sesuatu yang kita isytiharkan. Ia sesuatu yang dialami oleh pasukan kita. Luangkan beberapa minit untuk soalan-soalan ini.', questions: [
-          { q: 'Bagaimanakah kerja akan diteruskan jika saya tidak ada?', hint: 'Jika kemajuan menjadi perlahan, keputusan tergendala, atau pihak berkepentingan menunggu anda, itu satu isyarat.' },
-          { q: 'Bagaimanakah tingkah laku saya dalam detik yang mendapat perhatian tinggi mungkin memperkukuh atau melemahkan pemerkasaan?', hint: 'Adakah anda masuk campur apabila risiko meningkat? Menjawab soalan yang ditujukan kepada pasukan anda? Atau kekal di belakang mereka dan membiarkan mereka memimpin?' },
+          { q: 'Bagaimanakah kerja akan diteruskan jika saya tidak ada?', hint: 'Jika kemajuan menjadi perlahan, keputusan tergendala, atau pihak berkepentingan menunggu saya, itu satu isyarat.' },
+          { q: 'Bagaimanakah tingkah laku saya dalam detik yang mendapat perhatian tinggi mungkin memperkukuh atau melemahkan pemerkasaan?', hint: 'Adakah saya masuk campur apabila risiko meningkat? Menjawab soalan yang ditujukan kepada pasukan saya? Atau kekal di belakang mereka dan membiarkan mereka memimpin?' },
           { q: 'Bagaimanakah pasukan saya boleh beroperasi dengan lebih berdikari enam bulan dari sekarang jika saya lebih memperkasa mereka hari ini?', hint: 'Adakah mereka mencadangkan penyelesaian dan bukan sekadar menyerahkan masalah kepada anda? Mengambil tanggungjawab penuh terhadap perbualan dengan pihak berkepentingan? Berkembang dalam membuat pertimbangan?' }
         ] },
         { type: 'quote', text: 'Ambil semula fokus anda dan perkukuh keutamaan anda; kejayaan bermula dengan kejelasan dan keazaman.' }
