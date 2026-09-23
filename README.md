@@ -42,9 +42,11 @@ The header dropdown switches between English, 简体中文, 繁體中文, Franç
 
 The non-English files are first-draft translations. Each shows a short review notice at the top of every lesson until `ui.translationNote` in that file is set to an empty string. Have a native speaker or the Entegris regional team review them before release.
 
-## Video placeholders
+## Videos
 
-Every `video` block renders a placeholder panel labelled with its id. Ids: `l1-glp`, `l1-characteristics`, `l2-moment`, `l3-moment`, `l4-moment`, `l5-godo`. To wire in real video, put `<id>.mp4`, `<id>.jpg` (poster), and `<id>.vtt` (captions) in `assets/video/` and replace the placeholder branch in `blockVideo` in `js/app.js` with a `<video>` element pointing at those files. See `assets/video/README.md` for size limits.
+Videos live in `assets/video/<language>/<id>.mp4` with one subfolder per language code (`en`, `zh-Hans`, `zh-Hant`, `fr`, `de`, `he`, `ms`, `ja`, `ko`). Ids: `course-intro`, `l1-glp`, `l1-characteristics`, `l2-moment`, `l3-moment`, `l4-moment`, `l5-godo`. Optional `<id>.jpg` poster and `<id>.vtt` captions sit next to each video. `.webm` is accepted as well as `.mp4`.
+
+At runtime each video panel looks in the current language's folder, then `en/`, then the folder root, and shows the placeholder if nothing is found. Switching the language dropdown re-renders the lesson, so the video for that language loads immediately. See `assets/video/README.md` for packaging, size limits, and the git policy (video files are ignored by git).
 
 ## Imagery
 
@@ -64,13 +66,16 @@ GitHub Pages serves the `gh-pages` branch. The workflow in `.github/workflows/pa
 
 ## SCORM 1.2 packaging
 
-Videos and documents stay out of git. At packaging time:
+Build the base package, then add the videos either at build time or afterwards:
 
 ```
-scripts/build-scorm.sh /path/to/final-videos
+scripts/build-scorm.sh                       # packages assets/video/** if present
+scripts/build-scorm.sh /path/to/videos       # or point it at a folder with the same language layout
+scripts/add-videos.py dist/<package>.zip /path/to/videos              # add videos to an existing package
+scripts/add-videos.py dist/<package>.zip /path/to/videos --langs en,ja # one package per language subset
 ```
 
-This writes `dist/the-great-leader-profile-daily-leadership-at-entegris-scorm12.zip` with every media and document file added to the manifest. Upload that zip to the LMS. Requires `python3` for zipping.
+Both routes write every media file into the manifest. Unzipping the package, copying the video folders into `assets/video/`, and re-zipping by hand also works, since LMSs serve any file in the zip. Upload the zip to the LMS. Requires `python3`.
 
 How the LMS integration works:
 

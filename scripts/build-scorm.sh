@@ -15,10 +15,11 @@ cp launch.html index.html imsmanifest.xml "$DIST/"
 cp -r css js "$DIST/"
 cp assets/entegris-logo.png "$DIST/assets/"
 [ -d assets/docs ] && cp assets/docs/* "$DIST/assets/docs/" 2>/dev/null || true
-if [ -n "$VIDEO_SRC" ]; then
-  find "$VIDEO_SRC" -maxdepth 1 -type f \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -exec cp {} "$DIST/assets/video/" \;
-else
-  find assets/video -maxdepth 1 -type f \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -exec cp {} "$DIST/assets/video/" \; 2>/dev/null || true
+SRC_DIR="${VIDEO_SRC:-assets/video}"
+if [ -d "$SRC_DIR" ]; then
+  # Copies <id>.mp4/.jpg/.vtt from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
+  ( cd "$SRC_DIR" && find . -type f \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -print0 ) \
+    | ( cd "$SRC_DIR" && xargs -0 -I{} sh -c 'mkdir -p "$0/$(dirname "{}")" && cp "{}" "$0/{}"' "$OLDPWD/$DIST/assets/video" )
 fi
 
 # Add every media file to the manifest's resource list.

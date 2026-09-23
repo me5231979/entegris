@@ -152,12 +152,45 @@
     drawMeshes(main);
   }
 
+  /* Video: look for assets/video/<lang>/<id>.mp4, then assets/video/<id>.mp4, else keep the placeholder.
+     Poster (<id>.jpg) and captions (<id>.vtt) are picked up from the same folder when present. */
+  var VIDEO_BASE = (document.body.getAttribute('data-video-base') || 'assets/video/').replace(/\/?$/, '/');
   function blockVideo(b, C) {
-    return el('div', { class: 'block block--video' }, [el('div', { class: 'video', 'data-video': b.id, role: 'img', 'aria-label': C.ui.videoPlaceholder + ': ' + b.title }, [
+    var panel = el('div', { class: 'video', 'data-video': b.id, role: 'img', 'aria-label': C.ui.videoPlaceholder + ': ' + b.title }, [
       svg('<canvas class="mesh" data-tone="teal" data-seed="11" aria-hidden="true"></canvas>'),
       el('span', { class: 'ribbon', text: C.ui.videoPlaceholder + ' · ' + b.id }),
       el('div', { class: 'play' }, [svg(PLAY), el('span', { class: 'vt', text: b.title }), el('span', { class: 'vn cond', text: C.ui.captions })])
-    ])]);
+    ]);
+    var lang = I.current();
+    var dirs = (lang === 'en') ? [VIDEO_BASE + 'en/', VIDEO_BASE] : [VIDEO_BASE + lang + '/', VIDEO_BASE + 'en/', VIDEO_BASE];
+    var candidates = [];
+    dirs.forEach(function (d) { candidates.push({ dir: d, ext: 'mp4', type: 'video/mp4' }); candidates.push({ dir: d, ext: 'webm', type: 'video/webm' }); });
+    function tryNext(i) {
+      if (i >= candidates.length) { return; }
+      var dir = candidates[i].dir;
+      var v = document.createElement('video');
+      v.preload = 'metadata'; v.controls = true; v.setAttribute('playsinline', '');
+      v.setAttribute('aria-label', b.title);
+      var src = document.createElement('source'); src.src = dir + b.id + '.' + candidates[i].ext; src.type = candidates[i].type;
+      var failed = false;
+      function fail() { if (failed) { return; } failed = true; v.remove(); tryNext(i + 1); }
+      src.addEventListener('error', fail);
+      v.addEventListener('error', fail);
+      v.addEventListener('loadedmetadata', function () {
+        var poster = new Image();
+        poster.onload = function () { v.poster = dir + b.id + '.jpg'; };
+        poster.src = dir + b.id + '.jpg';
+        var track = document.createElement('track');
+        track.kind = 'captions'; track.srclang = lang; track.label = lang; track.src = dir + b.id + '.vtt';
+        track.addEventListener('error', function () { track.remove(); });
+        v.appendChild(track);
+        panel.classList.add('has-video'); panel.removeAttribute('role'); panel.removeAttribute('aria-label');
+      });
+      v.appendChild(src);
+      panel.appendChild(v);
+    }
+    tryNext(0);
+    return el('div', { class: 'block block--video' }, [panel]);
   }
 
   function blockCharacteristics(b) {
