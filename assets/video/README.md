@@ -26,6 +26,17 @@ How the course picks a video: it looks in the folder for the language chosen in 
 
 Format: MP4, H.264 video, AAC audio, 1280x720 or 1920x1080. Keep each file as small as quality allows; a SCORM package with all nine languages is nine times the size of one.
 
+## Sorting the exported files
+
+The exports are named like `ZH-CN - Six GLP Characteristics.mp4` or `Leadership Moment_ Reinforce or Reclaim_ (2).mp4` (no prefix means English). One command sorts them into the folders above:
+
+```
+scripts/sort-videos.py /path/to/exported-videos            # copies into assets/video/<lang>/<id>.mp4
+scripts/sort-videos.py /path/to/exported-videos /other/dest
+```
+
+Prefix map: none → en, ZH-CN → zh-Hans, ZH-TW → zh-Hant, DE → de, FR → fr, JA → ja, KO → ko, MS → ms, IW → he. Duplicate "(1)", "(2)" copies are resolved by keeping the largest file, and the script reports anything it could not place.
+
 ## Getting videos into a SCORM package
 
 Option A, one command (also updates the manifest):

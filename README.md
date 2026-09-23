@@ -17,6 +17,8 @@ js/content/en.js       English course content (source of truth)
 js/content/<code>.js   Translations: zh-Hans, zh-Hant, fr, de, he, ms, ja, ko
 scripts/build-scorm.sh Packages the course plus videos and documents into a SCORM zip
 scripts/build-single.py Bundles everything into docs/index.html, the published single file
+scripts/sort-videos.py  Sorts exported videos (language prefix + title) into assets/video/<lang>/<id>.mp4
+scripts/add-videos.py   Adds a video folder to an existing SCORM zip and updates the manifest
 Entegris-Great-Leader-Profile.html  Published single-file build: download and open, or share
 docs/index.html        Same file, in the folder GitHub Pages serves
 assets/entegris-logo.png
@@ -71,6 +73,7 @@ Build the base package, then add the videos either at build time or afterwards:
 ```
 scripts/build-scorm.sh                       # packages assets/video/** if present
 scripts/build-scorm.sh /path/to/videos       # or point it at a folder with the same language layout
+scripts/sort-videos.py /path/to/exported-videos                          # rename "ZH-CN - Six GLP Characteristics.mp4" style files into assets/video/<lang>/<id>.mp4
 scripts/add-videos.py dist/<package>.zip /path/to/videos              # add videos to an existing package
 scripts/add-videos.py dist/<package>.zip /path/to/videos --langs en,ja # one package per language subset
 ```

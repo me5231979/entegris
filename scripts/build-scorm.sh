@@ -15,6 +15,12 @@ cp launch.html index.html imsmanifest.xml "$DIST/"
 cp -r css js "$DIST/"
 cp assets/entegris-logo.png "$DIST/assets/"
 [ -d assets/docs ] && cp assets/docs/* "$DIST/assets/docs/" 2>/dev/null || true
+# Language folders with a note inside, so the unzipped package shows where each video goes.
+for L in en zh-Hans zh-Hant fr de he ms ja ko; do
+  mkdir -p "$DIST/assets/video/$L"
+  printf 'Put the %s videos here, named:\n  l1-glp.mp4\n  l1-characteristics.mp4\n  l2-moment.mp4\n  l3-moment.mp4\n  l4-moment.mp4\n  l5-godo.mp4\n  course-intro.mp4 (optional)\nOptional per video: <id>.jpg poster, <id>.vtt captions.\nIf a language folder is empty the course falls back to en/, then to the placeholder.\n' "$L" > "$DIST/assets/video/$L/PUT-VIDEOS-HERE.txt"
+done
+cp assets/video/README.md "$DIST/assets/video/README.md"
 SRC_DIR="${VIDEO_SRC:-assets/video}"
 if [ -d "$SRC_DIR" ]; then
   # Copies <id>.mp4/.jpg/.vtt from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
