@@ -20,7 +20,7 @@ for L in en zh-Hans zh-Hant fr de he ms ja ko; do
   mkdir -p "$DIST/assets/video/$L"
   case "$L" in en) P="";; zh-Hans) P="ZH-CN - ";; zh-Hant) P="ZH-TW - ";; fr) P="FR - ";; de) P="DE - ";; he) P="IW - ";; ms) P="MS - ";; ja) P="JA - ";; ko) P="KO - ";; esac
   printf 'Put the %s videos here. Keep the exported file names, for example:
-  %sUnlocking Leadership Potential_ The Great Leader Profile.mp4
+  %sUnlocking Leadership Potential_ The Entegris Great Leader Profile.mp4
   %sSix GLP Characteristics.mp4
   %sLeadership Moment_ Collaboration Under Pressure.mp4
   %sLeadership Moment_ Letting Go at the Right Level.mp4
