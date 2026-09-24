@@ -3,6 +3,7 @@
 
 Usage:
   scripts/sort-videos.py <folder-with-exported-videos> [<destination>] [--move]
+  scripts/sort-videos.py --in-place [<assets/video folder>]     # rename files already dropped into language folders
 
 Understands file names like:
   Unlocking Leadership Potential_ The Great Leader Profile (2).mp4   -> en/l1-glp.mp4
@@ -41,9 +42,44 @@ def classify(name):
     vid = next((v for k, v in TITLES if k in key), None)
     return lang, vid, title
 
+def in_place(video_root):
+    """Rename files already dropped into assets/video/<lang>/ so each becomes <id>.mp4.
+    The folder name is the language; the file's own prefix is ignored. Duplicates are moved to
+    _unused-videos next to the package root so they do not bloat the zip."""
+    unused = os.path.join(os.path.dirname(os.path.abspath(video_root)), '_unused-videos')
+    placed, dupes, unknown = 0, [], []
+    for lang in sorted(os.listdir(video_root)):
+        d = os.path.join(video_root, lang)
+        if not os.path.isdir(d) or lang not in set(LANG.values()): continue
+        best = {}
+        for f in sorted(os.listdir(d)):
+            if not f.lower().endswith(('.mp4', '.webm', '.mov', '.m4v')): continue
+            stem = os.path.splitext(f)[0]
+            if re.fullmatch(r'(course-intro|l1-glp|l1-characteristics|l2-moment|l3-moment|l4-moment|l5-godo)', stem):
+                best.setdefault(stem, (f, float('inf'))); continue   # already named; keep
+            _, vid, _ = classify(f)
+            if not vid: unknown.append(os.path.join(lang, f)); continue
+            size = os.path.getsize(os.path.join(d, f))
+            if vid in best and best[vid][1] >= size: dupes.append(os.path.join(lang, f)); continue
+            if vid in best and best[vid][1] != float('inf'): dupes.append(os.path.join(lang, best[vid][0]))
+            best[vid] = (f, size)
+        for vid, (f, size) in best.items():
+            if size == float('inf'): continue
+            ext = os.path.splitext(f)[1].lower()
+            os.rename(os.path.join(d, f), os.path.join(d, vid + ext))
+            print('%-8s %-24s <- %s' % (lang, vid + ext, f)); placed += 1
+    for rel in dupes:
+        os.makedirs(unused, exist_ok=True)
+        os.rename(os.path.join(video_root, rel), os.path.join(unused, rel.replace(os.sep, '__')))
+    print('\nRenamed %d files in %s' % (placed, video_root))
+    if dupes: print('Duplicate copies moved to %s (delete that folder before zipping):' % unused); [print('  ', r) for r in dupes]
+    if unknown: print('Could not classify (rename by hand to one of the ids):'); [print('  ', r) for r in unknown]
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     move = '--move' in sys.argv
+    if '--in-place' in sys.argv:
+        in_place(args[0] if args else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'video')); return
     if not args:
         print(__doc__); sys.exit(1)
     src = args[0]

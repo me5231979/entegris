@@ -26,6 +26,7 @@
       <file href="css/entegris.css"/>
       <file href="js/app.js"/>
       <file href="js/i18n.js"/>
+      <file href="js/video-names.js"/>
       <file href="js/mesh.js"/>
       <file href="js/scorm-api.js"/>
       <file href="js/content/en.js"/>

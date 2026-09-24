@@ -162,26 +162,37 @@
       el('div', { class: 'play' }, [svg(PLAY), el('span', { class: 'vt', text: b.title }), el('span', { class: 'vn cond', text: C.ui.captions })])
     ]);
     var lang = I.current();
-    var dirs = (lang === 'en') ? [VIDEO_BASE + 'en/', VIDEO_BASE] : [VIDEO_BASE + lang + '/', VIDEO_BASE + 'en/', VIDEO_BASE];
+    var dirs = (lang === 'en') ? [{ dir: VIDEO_BASE + 'en/', lang: 'en' }, { dir: VIDEO_BASE, lang: 'en' }]
+                               : [{ dir: VIDEO_BASE + lang + '/', lang: lang }, { dir: VIDEO_BASE + 'en/', lang: 'en' }, { dir: VIDEO_BASE, lang: 'en' }];
+    var N = window.ENTG_VIDEO_NAMES || { prefixes: {}, titles: {}, copySuffixes: [''] };
     var candidates = [];
-    dirs.forEach(function (d) { candidates.push({ dir: d, ext: 'mp4', type: 'video/mp4' }); candidates.push({ dir: d, ext: 'webm', type: 'video/webm' }); });
+    dirs.forEach(function (d) {
+      var names = [b.id];
+      var prefix = N.prefixes[d.lang] || '';
+      (N.titles[b.id] || []).forEach(function (t) { N.copySuffixes.forEach(function (sfx) { names.push(prefix + t + sfx); }); });
+      names.forEach(function (n) {
+        candidates.push({ dir: d.dir, file: n + '.mp4', type: 'video/mp4' });
+        candidates.push({ dir: d.dir, file: n + '.webm', type: 'video/webm' });
+      });
+    });
     function tryNext(i) {
       if (i >= candidates.length) { return; }
       var dir = candidates[i].dir;
       var v = document.createElement('video');
       v.preload = 'metadata'; v.controls = true; v.setAttribute('playsinline', '');
       v.setAttribute('aria-label', b.title);
-      var src = document.createElement('source'); src.src = dir + b.id + '.' + candidates[i].ext; src.type = candidates[i].type;
+      var src = document.createElement('source'); src.src = encodeURI(dir + candidates[i].file); src.type = candidates[i].type;
       var failed = false;
       function fail() { if (failed) { return; } failed = true; v.remove(); tryNext(i + 1); }
       src.addEventListener('error', fail);
       v.addEventListener('error', fail);
       v.addEventListener('loadedmetadata', function () {
+        var stem = candidates[i].file.replace(/\.(mp4|webm)$/, '');
         var poster = new Image();
-        poster.onload = function () { v.poster = dir + b.id + '.jpg'; };
-        poster.src = dir + b.id + '.jpg';
+        poster.onload = function () { v.poster = encodeURI(dir + stem + '.jpg'); };
+        poster.src = encodeURI(dir + stem + '.jpg');
         var track = document.createElement('track');
-        track.kind = 'captions'; track.srclang = lang; track.label = lang; track.src = dir + b.id + '.vtt';
+        track.kind = 'captions'; track.srclang = lang; track.label = lang; track.src = encodeURI(dir + stem + '.vtt');
         track.addEventListener('error', function () { track.remove(); });
         v.appendChild(track);
         panel.classList.add('has-video'); panel.removeAttribute('role'); panel.removeAttribute('aria-label');

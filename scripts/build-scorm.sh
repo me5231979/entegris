@@ -18,9 +18,43 @@ cp assets/entegris-logo.png "$DIST/assets/"
 # Language folders with a note inside, so the unzipped package shows where each video goes.
 for L in en zh-Hans zh-Hant fr de he ms ja ko; do
   mkdir -p "$DIST/assets/video/$L"
-  printf 'Put the %s videos here, named:\n  l1-glp.mp4\n  l1-characteristics.mp4\n  l2-moment.mp4\n  l3-moment.mp4\n  l4-moment.mp4\n  l5-godo.mp4\n  course-intro.mp4 (optional)\nOptional per video: <id>.jpg poster, <id>.vtt captions.\nIf a language folder is empty the course falls back to en/, then to the placeholder.\n' "$L" > "$DIST/assets/video/$L/PUT-VIDEOS-HERE.txt"
+  case "$L" in en) P="";; zh-Hans) P="ZH-CN - ";; zh-Hant) P="ZH-TW - ";; fr) P="FR - ";; de) P="DE - ";; he) P="IW - ";; ms) P="MS - ";; ja) P="JA - ";; ko) P="KO - ";; esac
+  printf 'Put the %s videos here. Keep the exported file names, for example:
+  %sUnlocking Leadership Potential_ The Great Leader Profile.mp4
+  %sSix GLP Characteristics.mp4
+  %sLeadership Moment_ Collaboration Under Pressure.mp4
+  %sLeadership Moment_ Letting Go at the Right Level.mp4
+  %sLeadership Moment_ Reinforce or Reclaim_.mp4
+  %sThree Go-Do Actions.mp4
+Copy suffixes like " (2)" are fine. The short ids (l1-glp.mp4, l2-moment.mp4, ...) also work.
+If this folder is empty the course falls back to en/, then to the placeholder.
+' "$L" "$P" "$P" "$P" "$P" "$P" "$P" > "$DIST/assets/video/$L/PUT-VIDEOS-HERE.txt"
 done
 cp assets/video/README.md "$DIST/assets/video/README.md"
+# Rename tool at the package root: after dropping videos into assets/video/<lang>/, run it once.
+mkdir -p "$DIST/tools" && cp scripts/sort-videos.py "$DIST/tools/sort-videos.py"
+cat > "$DIST/RENAME-VIDEOS.command" <<'CMD'
+#!/bin/bash
+# macOS: double-click after copying videos into assets/video/<language>/. Windows: see RENAME-VIDEOS.bat.
+cd "$(dirname "$0")" && python3 tools/sort-videos.py --in-place assets/video
+echo; read -p "Done. Press Enter to close." _
+CMD
+chmod +x "$DIST/RENAME-VIDEOS.command"
+printf '@echo off\r\ncd /d "%%~dp0"\r\npython tools\\sort-videos.py --in-place assets\\video\r\npause\r\n' > "$DIST/RENAME-VIDEOS.bat"
+cat > "$DIST/READ-ME-FIRST.txt" <<'TXT'
+The Great Leader Profile: Daily Leadership at Entegris (SCORM 1.2)
+
+1. Copy each language's videos into assets/video/<language>/ with their exported names unchanged:
+     en       Six GLP Characteristics (1).mp4, Leadership Moment_ Reinforce or Reclaim_ (2).mp4, ...
+     zh-Hans  ZH-CN - ...      zh-Hant  ZH-TW - ...      fr  FR - ...      de  DE - ...
+     he       IW - ...         ms       MS - ...         ja  JA - ...      ko  KO - ...
+   Each language folder needs one copy of each of the six videos. Extra "(1)" "(3)" copies of the
+   same video only add size; keep one.
+2. Zip the CONTENTS of this folder (imsmanifest.xml must be at the top level of the zip) and upload.
+
+Optional: RENAME-VIDEOS.command (Mac) / .bat (Windows) renames files to short ids and sets aside
+duplicate copies. Not required; the course recognises the exported names as they are.
+TXT
 SRC_DIR="${VIDEO_SRC:-assets/video}"
 if [ -d "$SRC_DIR" ]; then
   # Copies <id>.mp4/.jpg/.vtt from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
