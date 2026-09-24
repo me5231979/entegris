@@ -1942,6 +1942,28 @@ window.ENTG_CONTENT.ko = {
 
 </script>
   <script>
+/* Video file names as exported, so the course finds them without renaming.
+   Folder: assets/video/<language code>/. File: <prefix><title>.mp4, where the prefix is the
+   language tag used by the export ("FR - ", "ZH-CN - ", ...) and English has no prefix.
+   English exports may carry a copy suffix like " (2)"; when several copies exist the course takes the
+   highest number first (the most recent download), then the plain name.
+   The short ids (l1-glp.mp4 etc.) are also accepted in every folder. Edit this file if names change. */
+window.ENTG_VIDEO_NAMES = {
+  prefixes: { en: '', 'zh-Hans': 'ZH-CN - ', 'zh-Hant': 'ZH-TW - ', fr: 'FR - ', de: 'DE - ', he: 'IW - ', ms: 'MS - ', ja: 'JA - ', ko: 'KO - ' },
+  titles: {
+    'course-intro': ['Course Introduction'],
+    'l1-glp': ['Unlocking Leadership Potential_ The Great Leader Profile', 'Unlocking Leadership Potential_ Great Leader Profile', 'Unlocking Leadership Potential - The Great Leader Profile', 'Entegris Great Leader Profile'],
+    'l1-characteristics': ['Six GLP Characteristics', 'GLP Characteristics', 'Seven GLP Characteristics'],
+    'l2-moment': ['Leadership Moment_ Collaboration Under Pressure', 'Leadership Moment - Collaboration Under Pressure'],
+    'l3-moment': ['Leadership Moment_ Letting Go at the Right Level', 'Leadership Moment - Letting Go at the Right Level'],
+    'l4-moment': ['Leadership Moment_ Reinforce or Reclaim_', 'Leadership Moment_ Reinforce or Reclaim', 'Leadership Moment - Reinforce or Reclaim'],
+    'l5-godo': ['Three Go-Do Actions', 'Three Go Do Actions']
+  },
+  copySuffixes: [' (6)', ' (5)', ' (4)', ' (3)', ' (2)', ' (1)', '']
+};
+
+</script>
+  <script>
 /* Generative network-wave background, drawn once per resize on any canvas.mesh.
    Stands in for the faded photography on entegris.com until real imagery is supplied.
    Colours: deep blue to teal ground, light cyan lines and nodes, a few brand-red nodes.
@@ -2271,26 +2293,37 @@ window.ENTG_CONTENT.ko = {
       el('div', { class: 'play' }, [svg(PLAY), el('span', { class: 'vt', text: b.title }), el('span', { class: 'vn cond', text: C.ui.captions })])
     ]);
     var lang = I.current();
-    var dirs = (lang === 'en') ? [VIDEO_BASE + 'en/', VIDEO_BASE] : [VIDEO_BASE + lang + '/', VIDEO_BASE + 'en/', VIDEO_BASE];
+    var dirs = (lang === 'en') ? [{ dir: VIDEO_BASE + 'en/', lang: 'en' }, { dir: VIDEO_BASE, lang: 'en' }]
+                               : [{ dir: VIDEO_BASE + lang + '/', lang: lang }, { dir: VIDEO_BASE + 'en/', lang: 'en' }, { dir: VIDEO_BASE, lang: 'en' }];
+    var N = window.ENTG_VIDEO_NAMES || { prefixes: {}, titles: {}, copySuffixes: [''] };
     var candidates = [];
-    dirs.forEach(function (d) { candidates.push({ dir: d, ext: 'mp4', type: 'video/mp4' }); candidates.push({ dir: d, ext: 'webm', type: 'video/webm' }); });
+    dirs.forEach(function (d) {
+      var names = [b.id];
+      var prefix = N.prefixes[d.lang] || '';
+      (N.titles[b.id] || []).forEach(function (t) { N.copySuffixes.forEach(function (sfx) { names.push(prefix + t + sfx); }); });
+      names.forEach(function (n) {
+        candidates.push({ dir: d.dir, file: n + '.mp4', type: 'video/mp4' });
+        candidates.push({ dir: d.dir, file: n + '.webm', type: 'video/webm' });
+      });
+    });
     function tryNext(i) {
       if (i >= candidates.length) { return; }
       var dir = candidates[i].dir;
       var v = document.createElement('video');
       v.preload = 'metadata'; v.controls = true; v.setAttribute('playsinline', '');
       v.setAttribute('aria-label', b.title);
-      var src = document.createElement('source'); src.src = dir + b.id + '.' + candidates[i].ext; src.type = candidates[i].type;
+      var src = document.createElement('source'); src.src = encodeURI(dir + candidates[i].file); src.type = candidates[i].type;
       var failed = false;
       function fail() { if (failed) { return; } failed = true; v.remove(); tryNext(i + 1); }
       src.addEventListener('error', fail);
       v.addEventListener('error', fail);
       v.addEventListener('loadedmetadata', function () {
+        var stem = candidates[i].file.replace(/\.(mp4|webm)$/, '');
         var poster = new Image();
-        poster.onload = function () { v.poster = dir + b.id + '.jpg'; };
-        poster.src = dir + b.id + '.jpg';
+        poster.onload = function () { v.poster = encodeURI(dir + stem + '.jpg'); };
+        poster.src = encodeURI(dir + stem + '.jpg');
         var track = document.createElement('track');
-        track.kind = 'captions'; track.srclang = lang; track.label = lang; track.src = dir + b.id + '.vtt';
+        track.kind = 'captions'; track.srclang = lang; track.label = lang; track.src = encodeURI(dir + stem + '.vtt');
         track.addEventListener('error', function () { track.remove(); });
         v.appendChild(track);
         panel.classList.add('has-video'); panel.removeAttribute('role'); panel.removeAttribute('aria-label');
