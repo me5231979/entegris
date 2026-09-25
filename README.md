@@ -72,6 +72,8 @@ Build the base package, then add the videos either at build time or afterwards:
 
 ```
 scripts/build-scorm.sh                       # packages assets/video/** if present
+scripts/build-scorm.sh --lang fr             # single-language package: opens in French, dropdown hidden, fr/ video folder only
+scripts/build-all-languages.sh               # one package per language into dist/
 scripts/build-scorm.sh /path/to/videos       # or point it at a folder with the same language layout
 scripts/sort-videos.py /path/to/exported-videos                          # rename "ZH-CN - Six GLP Characteristics.mp4" style files into assets/video/<lang>/<id>.mp4
 scripts/add-videos.py dist/<package>.zip /path/to/videos              # add videos to an existing package

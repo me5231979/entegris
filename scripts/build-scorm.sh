@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 # Package the course as a SCORM 1.2 zip.
-# Usage: scripts/build-scorm.sh [path/to/videos]
+# Usage: scripts/build-scorm.sh [path/to/videos] [--lang <code>]
 #   If a video folder is given, its contents are copied into assets/video/ inside the package.
 #   Otherwise whatever is already in assets/video/ is used.
+#   --lang fr  builds a single-language package: opens in French, dropdown hidden, only fr/ video folder.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-VIDEO_SRC="${1:-}"
-DIST="dist/scorm"
-OUT="dist/the-great-leader-profile-daily-leadership-at-entegris-scorm12.zip"
+VIDEO_SRC=""; LANG_ONLY=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --lang) LANG_ONLY="$2"; shift 2;;
+    *) VIDEO_SRC="$1"; shift;;
+  esac
+done
+DIST="dist/scorm${LANG_ONLY:+-$LANG_ONLY}"
+OUT="dist/the-great-leader-profile-daily-leadership-at-entegris-scorm12${LANG_ONLY:+-$LANG_ONLY}.zip"
+lang_name() { case "$1" in en) echo "English";; zh-Hans) echo "简体中文";; zh-Hant) echo "繁體中文";; fr) echo "Français";; de) echo "Deutsch";; he) echo "עברית";; ms) echo "Bahasa Melayu";; ja) echo "日本語";; ko) echo "한국어";; esac; }
 
 rm -rf "$DIST" && mkdir -p "$DIST/assets/video" "$DIST/assets/docs" dist
 cp launch.html index.html imsmanifest.xml "$DIST/"
@@ -16,7 +24,22 @@ cp -r css js "$DIST/"
 cp assets/entegris-logo.png "$DIST/assets/"
 [ -d assets/docs ] && cp assets/docs/* "$DIST/assets/docs/" 2>/dev/null || true
 # Language folders with a note inside, so the unzipped package shows where each video goes.
-for L in en zh-Hans zh-Hant fr de he ms ja ko; do
+if [ -n "$LANG_ONLY" ]; then
+  printf "window.ENTG_CONFIG = { defaultLang: '%s', lockLang: true };\n" "$LANG_ONLY" > "$DIST/js/config.js"
+  NAME="$(lang_name "$LANG_ONLY")"
+  python3 - "$DIST/imsmanifest.xml" "$LANG_ONLY" "$NAME" <<'PY'
+import sys
+path, code, name = sys.argv[1:4]
+s = open(path, encoding='utf-8').read()
+s = s.replace('identifier="com.entegris.glp.daily-leadership"', 'identifier="com.entegris.glp.daily-leadership.%s"' % code)
+s = s.replace('<title>The Great Leader Profile: Daily Leadership at Entegris</title>', '<title>The Great Leader Profile: Daily Leadership at Entegris (%s)</title>' % name)
+open(path, 'w', encoding='utf-8').write(s)
+PY
+  LANG_LIST="$LANG_ONLY"
+else
+  LANG_LIST="en zh-Hans zh-Hant fr de he ms ja ko"
+fi
+for L in $LANG_LIST; do
   mkdir -p "$DIST/assets/video/$L"
   case "$L" in en) P="";; zh-Hans) P="ZH-CN - ";; zh-Hant) P="ZH-TW - ";; fr) P="FR - ";; de) P="DE - ";; he) P="IW - ";; ms) P="MS - ";; ja) P="JA - ";; ko) P="KO - ";; esac
   printf 'Put the %s videos here. Keep the exported file names, for example:
@@ -57,8 +80,8 @@ duplicate copies. Not required; the course recognises the exported names as they
 TXT
 SRC_DIR="${VIDEO_SRC:-assets/video}"
 if [ -d "$SRC_DIR" ]; then
-  # Copies <id>.mp4/.jpg/.vtt from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
-  ( cd "$SRC_DIR" && find . -type f \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -print0 ) \
+  # Copies videos from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
+  ( cd "$SRC_DIR" && find . -type f ${LANG_ONLY:+\( -path "./$LANG_ONLY/*" -o -maxdepth 1 \)} \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -print0 ) \
     | ( cd "$SRC_DIR" && xargs -0 -I{} sh -c 'mkdir -p "$0/$(dirname "{}")" && cp "{}" "$0/{}"' "$OLDPWD/$DIST/assets/video" )
 fi
 
@@ -76,6 +99,6 @@ PY
 fi
 
 rm -f "$OUT"
-( cd "$DIST" && python3 -m zipfile -c "../../$OUT" . )
+( cd "$DIST" && python3 -m zipfile -c "$OLDPWD/$OUT" . )
 COUNT=$(find "$DIST/assets/video" -type f | wc -l | tr -d ' ')
 echo "Packaged $OUT ($COUNT media files)"

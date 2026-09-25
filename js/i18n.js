@@ -21,12 +21,15 @@
   function byCode(code) { for (var i = 0; i < LANGS.length; i++) { if (LANGS[i].code === code) { return LANGS[i]; } } return LANGS[0]; }
 
   function detect() {
+    var cfg = global.ENTG_CONFIG || {};
+    if (cfg.lockLang && cfg.defaultLang && has(cfg.defaultLang)) { return cfg.defaultLang; }
     var q = null;
     try { q = new URLSearchParams(global.location.search).get('lang'); } catch (e) { /* ignore */ }
     if (q && has(q)) { return q; }
     try { var saved = localStorage.getItem(KEY); if (saved && has(saved)) { return saved; } } catch (e) { /* ignore */ }
     var nav = String(navigator.language || 'en').toLowerCase();
     if (nav.indexOf('zh') === 0) { var zh = (/tw|hk|mo|hant/.test(nav)) ? 'zh-Hant' : 'zh-Hans'; return has(zh) ? zh : 'en'; }
+    if (cfg.defaultLang && has(cfg.defaultLang)) { return cfg.defaultLang; }
     for (var i = 0; i < LANGS.length; i++) { if (nav.indexOf(LANGS[i].code.toLowerCase()) === 0 && has(LANGS[i].code)) { return LANGS[i].code; } }
     return 'en';
   }
@@ -56,6 +59,8 @@
   }
 
   function buildSelects() {
+    var cfg = global.ENTG_CONFIG || {};
+    if (cfg.lockLang) { Array.prototype.forEach.call(document.querySelectorAll('.lang'), function (l) { l.hidden = true; }); }
     Array.prototype.forEach.call(document.querySelectorAll('select[data-lang-select]'), function (sel) {
       if (sel.options.length) { return; }
       LANGS.forEach(function (l) {
