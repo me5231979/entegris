@@ -38,6 +38,7 @@ def main():
         if top and langs is not None and top not in langs:
             continue
         for f in files:
+            if f.startswith('.') or f.startswith('._'): continue
             if f.lower().endswith(('.mp4', '.webm', '.jpg', '.jpeg', '.vtt')):
                 arc = 'assets/video/' + (rel + '/' if rel != '.' else '') + f
                 media.append((arc.replace(os.sep, '/'), os.path.join(root, f)))
@@ -51,6 +52,8 @@ def main():
         entries = ''.join('      <file href="%s"/>\n' % arc for arc, _ in media if ('<file href="%s"/>' % arc) not in manifest)
         manifest = manifest.replace(marker, entries + marker, 1)
         for item in zin.infolist():
+            base = item.filename.rsplit('/', 1)[-1]
+            if base == '.DS_Store' or item.filename.startswith('__MACOSX/') or base.startswith('._'): continue
             if item.filename == 'imsmanifest.xml': zout.writestr(item, manifest)
             elif item.filename not in {a for a, _ in media}: zout.writestr(item, zin.read(item.filename))
         for arc, path in media:

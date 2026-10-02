@@ -53,30 +53,21 @@ Copy suffixes like " (2)" are fine. The short ids (l1-glp.mp4, l2-moment.mp4, ..
 If this folder is empty the course falls back to en/, then to the placeholder.
 ' "$L" "$P" "$P" "$P" "$P" "$P" "$P" > "$DIST/assets/video/$L/PUT-VIDEOS-HERE.txt"
 done
-cp assets/video/README.md "$DIST/assets/video/README.md"
-# Rename tool at the package root: after dropping videos into assets/video/<lang>/, run it once.
-mkdir -p "$DIST/tools" && cp scripts/sort-videos.py "$DIST/tools/sort-videos.py"
-cat > "$DIST/RENAME-VIDEOS.command" <<'CMD'
-#!/bin/bash
-# macOS: double-click after copying videos into assets/video/<language>/. Windows: see RENAME-VIDEOS.bat.
-cd "$(dirname "$0")" && python3 tools/sort-videos.py --in-place assets/video
-echo; read -p "Done. Press Enter to close." _
-CMD
-chmod +x "$DIST/RENAME-VIDEOS.command"
-printf '@echo off\r\ncd /d "%%~dp0"\r\npython tools\\sort-videos.py --in-place assets\\video\r\npause\r\n' > "$DIST/RENAME-VIDEOS.bat"
 cat > "$DIST/READ-ME-FIRST.txt" <<'TXT'
 The Great Leader Profile: Daily Leadership at Entegris (SCORM 1.2)
 
-1. Copy each language's videos into assets/video/<language>/ with their exported names unchanged:
-     en       Six GLP Characteristics (1).mp4, Leadership Moment_ Reinforce or Reclaim_ (2).mp4, ...
-     zh-Hans  ZH-CN - ...      zh-Hant  ZH-TW - ...      fr  FR - ...      de  DE - ...
-     he       IW - ...         ms       MS - ...         ja  JA - ...      ko  KO - ...
-   Each language folder needs one copy of each of the six videos. Extra "(1)" "(3)" copies of the
-   same video only add size; keep one.
-2. Zip the CONTENTS of this folder (imsmanifest.xml must be at the top level of the zip) and upload.
+1. Copy the videos into assets/video/<language>/ with their exported names unchanged, for example
+   "FR - Six GLP Characteristics.mp4" into assets/video/fr/.
+2. Zip the CONTENTS of this folder so imsmanifest.xml sits at the top level of the zip.
 
-Optional: RENAME-VIDEOS.command (Mac) / .bat (Windows) renames files to short ids and sets aside
-duplicate copies. Not required; the course recognises the exported names as they are.
+   SumTotal rejects zips that contain hidden macOS files (.DS_Store) or scripts. Finder's "Compress"
+   adds .DS_Store, so zip from Terminal instead. In Terminal, cd into this folder and run:
+
+     zip -r -X ../GLP-course.zip . -x '.DS_Store' '*/.DS_Store' '__MACOSX/*'
+
+   On Windows, right-click inside the folder, select all, Send to > Compressed folder.
+
+3. Upload the zip to the LMS.
 TXT
 SRC_DIR="${VIDEO_SRC:-assets/video}"
 if [ -d "$SRC_DIR" ]; then
