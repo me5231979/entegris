@@ -60,12 +60,13 @@ The Great Leader Profile: Daily Leadership at Entegris (SCORM 1.2)
    "FR - Six GLP Characteristics.mp4" into assets/video/fr/.
 2. Zip the CONTENTS of this folder so imsmanifest.xml sits at the top level of the zip.
 
-   SumTotal rejects zips that contain hidden macOS files (.DS_Store) or scripts. Finder's "Compress"
-   adds .DS_Store, so zip from Terminal instead. In Terminal, cd into this folder and run:
+   SumTotal rejects zips that contain hidden macOS files (.DS_Store). Finder's "Compress" adds them,
+   so on a Mac zip from Terminal. Open Terminal, cd into this folder, and run these two lines:
 
-     zip -r -X ../GLP-course.zip . -x '.DS_Store' '*/.DS_Store' '__MACOSX/*'
+     find . -name '.DS_Store' -delete
+     zip -r -X ../GLP-course.zip . -x '*.DS_Store'
 
-   On Windows, right-click inside the folder, select all, Send to > Compressed folder.
+   On Windows, open the folder, select all, right-click, Send to > Compressed (zipped) folder.
 
 3. Upload the zip to the LMS.
 TXT
