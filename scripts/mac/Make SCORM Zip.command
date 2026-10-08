@@ -15,8 +15,11 @@ OUT="$(dirname "$FOLDER")/$NAME.zip"
 cd "$FOLDER" || exit 1
 find . -name '.DS_Store' -delete
 find . -name '._*' -delete
+# SumTotal rejects packages that contain scripts; remove any helper files and tool folders.
+find . -type f \( -name '*.py' -o -name '*.command' -o -name '*.bat' -o -name '*.sh' -o -name '*.ps1' -o -name '*.pyc' \) -delete
+find . -type d \( -name tools -o -name scripts -o -name __MACOSX -o -name __pycache__ \) -prune -exec rm -rf {} +
 rm -f "$OUT"
-zip -r -X -q "$OUT" . -x '*.DS_Store' '__MACOSX/*'
+zip -r -X -q "$OUT" . -x '*.DS_Store' '__MACOSX/*' '*.py' '*.command' '*.bat' '*.sh'
 echo
 echo "Done. Upload this file to SumTotal:"
 echo "  $OUT"
