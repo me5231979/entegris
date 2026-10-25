@@ -74,11 +74,11 @@ SRC_DIR="${VIDEO_SRC:-assets/video}"
 if [ -d "$SRC_DIR" ]; then
   # Copies videos from the folder root and from language subfolders (en/, ja/, ...), keeping the structure.
   ( cd "$SRC_DIR" && find . -type f ${LANG_ONLY:+\( -path "./$LANG_ONLY/*" -o -maxdepth 1 \)} \( -iname '*.mp4' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.vtt' -o -iname '*.webm' \) -print0 ) \
-    | ( cd "$SRC_DIR" && xargs -0 -I{} sh -c 'mkdir -p "$0/$(dirname "{}")" && cp "{}" "$0/{}"' "$OLDPWD/$DIST/assets/video" )
+    | ( cd "$SRC_DIR" && xargs -0 -n1 sh -c 'mkdir -p "$0/$(dirname "$1")" && cp "$1" "$0/$1"' "$OLDPWD/$DIST/assets/video" )
 fi
 
 # Add every media file to the manifest's resource list.
-MEDIA=$(cd "$DIST" && find assets/video assets/docs -type f | sort | sed 's|.*|      <file href="&"/>|')
+MEDIA=$(cd "$DIST" && find assets/video assets/docs -type f | sort | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' -e 's/"/\&quot;/g' -e 's|.*|      <file href="&"/>|')
 if [ -n "$MEDIA" ]; then
   python3 - "$DIST/imsmanifest.xml" "$MEDIA" <<'PY'
 import sys
